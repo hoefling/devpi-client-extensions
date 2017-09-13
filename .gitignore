@@ -99,3 +99,6 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# WingIDE project files
+*.wp[ru]
