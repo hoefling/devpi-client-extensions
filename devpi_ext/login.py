@@ -8,6 +8,7 @@ from command line will be used.
 
 from pluggy import HookimplMarker
 from devpi.pypirc import Auth
+from py.iniconfig import ParseError
 
 
 hookimpl = HookimplMarker('devpiclient')
@@ -19,7 +20,7 @@ def devpiclient_get_password(url, username):
     """See :py:func:`devpi.hookspecs.devpiclient_get_password`"""
     try:
         auth = Auth()
-    except IOError:
+    except (IOError, ParseError, ):
         return None
 
     keys = ('repository', 'username', 'password', )
