@@ -1,4 +1,5 @@
 from setuptools import setup, find_packages
+from devpi_ext import __version__
 
 
 def classifiers():
@@ -22,7 +23,7 @@ setup(
     name='devpi-client-extensions',
     description='devpi client extensions',
     long_description='',
-    version='0.1.dev0',
+    version=__version__,
     packages=find_packages(),
     install_requires=['devpi-client>=3.0.0'],
     url='https://github.com/hoefling/devpi-client-extensions',
