@@ -29,7 +29,7 @@ setup(
     maintainer='Oleg Hoefling',
     maintainer_email='oleg.hoefling@gmail.com',
     classifiers=classifiers(),
-    entry_points = {
+    entry_points={
         'devpi_client': ['devpi-client-ext-login = devpi_ext.login']
     }
 )

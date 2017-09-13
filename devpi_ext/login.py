@@ -22,8 +22,9 @@ def devpiclient_get_password(url, username):
     except IOError:
         return None
 
+    keys = ('repository', 'username', 'password', )
     password = next((s['password'] for s in auth.ini.sections.values()
-                     if all(k in s for k in ('repository', 'username', 'password', ))
+                     if all(k in s for k in keys)
                      and s['repository'].startswith(url)
                      and s['username'] == username), None)
     if password:
