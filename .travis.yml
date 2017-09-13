@@ -32,6 +32,10 @@ before_install:
                 brew update && brew install "$_osx_install"
             fi
         fi
+        # prepare test coverage for latest python version only
+        if [ "$TRAVIS_PYTHON_VERSION" == "$_latest" ]; then
+            pip install python-coveralls
+        fi
 install:
     # runtime dependencies
     - pip install devpi-client
@@ -41,3 +45,9 @@ install:
     - pip install flake8
 script:
     - python setup.py test flake8 bdist_wheel
+after_success:
+    - |
+        # run test coverage for latest python version only
+        if [ "$TRAVIS_PYTHON_VERSION" == "$_latest" ]; then
+            coveralls
+        fi
