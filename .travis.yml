@@ -1,0 +1,20 @@
+language: python
+os:
+    - linux
+env:
+    global:
+        - _latest=3.6
+python:
+    - 2.7
+    - 3.4
+    - 3.5
+    - 3.6
+install:
+    # runtime dependencies
+    - pip install devpi-client
+    # test dependencies
+    - pip install pytest-runner pytest-cov pytest-mock
+    # static code analysis
+    - pip install flake8
+script:
+    - python setup.py test flake8 bdist_wheel
