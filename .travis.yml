@@ -10,21 +10,22 @@ python:
      - 3.5
      - 3.6
 # osx builds, see https://github.com/travis-ci/travis-ci/issues/2312
-matrix:
-    include:
-        # python2 preinstalled on osx
-        - os: osx
-          language: generic
-        # latest python2 from homebrew
-        - os: osx
-          language: generic
-          env:
-              - _osx_install=python
-        # latest python3 from homebrew
-        - os: osx
-          language: generic
-          env:
-              - _osx_install=python3
+# osx builds take too long on travis, turning off for now
+#matrix:
+#    include:
+#        # python2 preinstalled on osx
+#        - os: osx
+#          language: generic
+#        # latest python2 from homebrew
+#        - os: osx
+#          language: generic
+#          env:
+#              - _osx_install=python
+#        # latest python3 from homebrew
+#        - os: osx
+#          language: generic
+#          env:
+#              - _osx_install=python3
 before_install:
     - |
         if [ "$TRAVIS_OS_NAME" == "osx" ]; then
