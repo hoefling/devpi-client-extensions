@@ -1,14 +1,37 @@
 language: python
 os:
-    - linux
+     - linux
 env:
-    global:
-        - _latest=3.6
+     global:
+         - _latest=3.6
 python:
-    - 2.7
-    - 3.4
-    - 3.5
-    - 3.6
+     - 2.7
+     - 3.4
+     - 3.5
+     - 3.6
+# osx builds, see https://github.com/travis-ci/travis-ci/issues/2312
+matrix:
+    include:
+        # python2 preinstalled on osx
+        - os: osx
+          language: generic
+        # latest python2 from homebrew
+        - os: osx
+          language: generic
+          env:
+              - _osx_install=python
+        # latest python3 from homebrew
+        - os: osx
+          language: generic
+          env:
+              - _osx_install=python3
+before_install:
+    - |
+        if [ "$TRAVIS_OS_NAME" == "osx" ]; then
+            if [ -n "$_osx_install" ]; then
+                brew update && brew install "$_osx_install"
+            fi
+        fi
 install:
     # runtime dependencies
     - pip install devpi-client
