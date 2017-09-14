@@ -1,9 +1,24 @@
 devpi-client-extensions
 =======================
 
+.. role:: bash(code)
+   :language: bash
+
 Some useful stuff around `devpi client`_. Although this package is proudly named *extensions*,
 currently there is only one thing implemented ready to be used: a hook that uses passwords from
 ``.pypirc`` on login to devpi server so you don't have to enter your password if you store it for upload anyway.
+
+Install
+-------
+
+.. code-block:: sh
+
+   $ pip install devpi-client-extensions
+
+Usage
+-----
+
+Just use the :bash:`devpi login` command as usual:
 
 .. code-block:: sh
 
