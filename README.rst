@@ -13,11 +13,15 @@ currently there is only one thing implemented ready to be used: a hook that uses
 
 Stats
 -----
-|build| |coverage|
+|build| |appveyor| |coverage|
 
 .. |build| image:: https://travis-ci.org/hoefling/devpi-client-extensions.svg?branch=master
    :target: https://travis-ci.org/hoefling/devpi-client-extensions
    :alt: Build status
+
+.. |appveyor| image:: https://ci.appveyor.com/api/projects/status/github/hoefling/devpi-client-extensions?branch=master&svg=true
+   :target: https://ci.appveyor.com/project/hoefling/devpi-client-extensions
+   :alt: Windows build status
 
 .. |coverage| image:: https://coveralls.io/repos/github/hoefling/devpi-client-extensions/badge.svg?branch=master
    :target: https://coveralls.io/github/hoefling/devpi-client-extensions?branch=master
