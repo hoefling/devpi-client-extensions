@@ -1,5 +1,12 @@
+from io import open
 from setuptools import setup, find_packages
 from devpi_ext import __version__
+
+
+with open('README.rst', mode='r', encoding='utf8') as file:
+    README = file.read()
+with open('LICENSE', mode='r', encoding='utf8') as file:
+    LICENSE = file.read()
 
 
 def classifiers():
@@ -22,7 +29,8 @@ def classifiers():
 setup(
     name='devpi-client-extensions',
     description='devpi client extensions',
-    long_description='',
+    long_description=README,
+    license=LICENSE,
     version=__version__,
     packages=find_packages(),
     install_requires=['devpi-client>=3.0.0'],
