@@ -26,7 +26,11 @@ Just use the ``devpi login`` command as usual:
 Stats
 -----
 
-|build| |appveyor| |coverage|
+|pypi| |build| |appveyor| |coverage|
+
+.. |pypi| image:: https://badge.fury.io/py/devpi-client-extensions.svg
+   :target: https://badge.fury.io/py/devpi-client-extensions
+   :alt: Package on PyPI
 
 .. |build| image:: https://travis-ci.org/hoefling/devpi-client-extensions.svg?branch=master
    :target: https://travis-ci.org/hoefling/devpi-client-extensions
