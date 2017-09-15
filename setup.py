@@ -29,8 +29,8 @@ def classifiers():
 setup(
     name='devpi-client-extensions',
     description='devpi client extensions',
-    long_description=README,
-    license=LICENSE,
+    long_description='\n'.join((README, LICENSE, )),
+    license='MIT',
     version=__version__,
     packages=find_packages(),
     install_requires=['devpi-client>=3.0.0'],
