@@ -26,7 +26,7 @@ Just use the ``devpi login`` command as usual:
 Stats
 -----
 
-|pypi| |build| |appveyor| |coverage|
+|pypi| |build| |appveyor| |coverage| |landscape|
 
 .. |pypi| image:: https://badge.fury.io/py/devpi-client-extensions.svg
    :target: https://badge.fury.io/py/devpi-client-extensions
@@ -43,5 +43,9 @@ Stats
 .. |coverage| image:: https://coveralls.io/repos/github/hoefling/devpi-client-extensions/badge.svg?branch=master
    :target: https://coveralls.io/github/hoefling/devpi-client-extensions?branch=master
    :alt: Coverage status
+
+.. |landscape| image:: https://landscape.io/github/hoefling/devpi-client-extensions/master/landscape.svg?style=flat
+   :target: https://landscape.io/github/hoefling/devpi-client-extensions/master
+   :alt: Code Health
 
 .. _devpi client: https://github.com/devpi/devpi
