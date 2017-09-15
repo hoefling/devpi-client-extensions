@@ -1,14 +1,14 @@
 language: python
 os:
-     - linux
+- linux
 env:
-     global:
-         - _latest=3.6
+  global:
+  - _latest=3.6
 python:
-     - 2.7
-     - 3.4
-     - 3.5
-     - 3.6
+- 2.7
+- 3.4
+- 3.5
+- 3.6
 # osx builds, see https://github.com/travis-ci/travis-ci/issues/2312
 # osx builds take too long on travis, turning off for now
 #matrix:
@@ -27,28 +27,35 @@ python:
 #          env:
 #              - _osx_install=python3
 before_install:
-    - |
-        if [ "$TRAVIS_OS_NAME" == "osx" ]; then
-            if [ -n "$_osx_install" ]; then
-                brew update && brew install "$_osx_install"
-            fi
-        fi
-        # prepare test coverage for latest python version only
-        if [ "$TRAVIS_PYTHON_VERSION" == "$_latest" ]; then
-            pip install python-coveralls
-        fi
+- |
+  if [ "$TRAVIS_OS_NAME" == "osx" ]; then
+      if [ -n "$_osx_install" ]; then
+          brew update && brew install "$_osx_install"
+      fi
+  fi
+  # prepare test coverage for latest python version only
+  if [ "$TRAVIS_PYTHON_VERSION" == "$_latest" ]; then
+      pip install python-coveralls
+  fi
 install:
-    # runtime dependencies
-    - pip install devpi-client
-    # test dependencies
-    - pip install pytest-runner pytest-cov pytest-mock
-    # static code analysis
-    - pip install flake8
+- pip install devpi-client
+- pip install pytest-runner pytest-cov pytest-mock
+- pip install flake8
 script:
-    - python setup.py test flake8 bdist_wheel
+- python setup.py test flake8 bdist_wheel
 after_success:
-    - |
-        # run test coverage for latest python version only
-        if [ "$TRAVIS_PYTHON_VERSION" == "$_latest" ]; then
-            coveralls
-        fi
+- |
+  # run test coverage for latest python version only
+  if [ "$TRAVIS_PYTHON_VERSION" == "$_latest" ]; then
+      coveralls
+  fi
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: lfoVhw3l33gVOb7p0C7dvxZmRAi3T94iZTrcuSaerIR1TCMJWJ9IPPFPwD67UqNBB59Wjefl4PhuemWXYgtKiDOHAC4qihVVww9n/Fn8Y5M8vK2aiU97+IUzSqfQsQZQKo0yPb0dmROtrGOJYrODoV9H0dbs624M0Q0/oKK4B83N4cs7M93iXLkPfjDOCfUhcqBSlCpuUt9g1Yr6xjObmUXDVhrNDZNzmasajOFDpHQthFEZobK1abvW3ceLvuw0FzC5fZaFgbNZkRXBwQN1kTSezJa9bicnTDoAetAp0+J0yTGn6huCFYv9G8KwIWIqEIi4qclX+nhQxx+cV5D6OnxTt5AmmslrvAg72FNt2jv7eY/q8eCTswlqNzkHrVp4RDzZMiyky3U8OJIZwcf7A7L1V/M1vkwNHUYbihmZl7Yra/itYq213ZWYkRIlShnwSlhMKjJpS0egoBNcb7uMSPsFAMIehtfnk0p0F92l2VaE0M9nFzPU9iKAmxkab0I+cfzQK/q4oTZZhuPZ9eFjFV/xo3rJ7+mbo7Zb3pYwvPYT9LfjWmhpFtLrKMAMJ4wiqcqDhRVG7s75GcwaJcrvm+7FiyFfnninWjyQol8SGyCIA2as92o1OfY5SqIA4O3GmOsHNdJyqhWAY6RWSLRGIZKzgDIZe29W4RE6I+gvmlA=
+  file_glob: true
+  file: dist/*.whl
+  on:
+    tags: true
+    repo: hoefling/devpi-client-extensions
