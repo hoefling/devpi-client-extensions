@@ -38,14 +38,11 @@ before_install:
       pip install python-coveralls
   fi
 install:
-- pip install devpi-client
-- pip install pytest-runner pytest-cov pytest-mock
-- pip install flake8
+- pip install --requirement=requirements.txt
 script:
 - python setup.py test flake8 bdist_wheel
 after_success:
 - |
-  # run test coverage for latest python version only
   if [ "$TRAVIS_PYTHON_VERSION" == "$_latest" ]; then
       coveralls
   fi
