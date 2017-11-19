@@ -43,6 +43,7 @@ def devpiclient_get_password(url, username):
         print('Using {} credentials from .pypirc'.format(username))
     return password
 
+
 # ---------------------------------------------------------------------
 def _find_password(fp, url, username):
     parser = configparser.ConfigParser()
