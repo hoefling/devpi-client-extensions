@@ -1,23 +1,44 @@
-import pytest
+try:
+    from StringIO import StringIO  # python2
+    import pathlib2 as pathlib
+except ImportError:
+    from io import StringIO  # python3
+    import pathlib
+
 from devpi_ext import login
 
 
-@pytest.mark.usefixtures('patched_open_conf_single_section')
+section = [
+    '[foo]',
+    'repository: http://foo',
+    'username: bar',
+    'password: baz',
+]
+
+
 def test_password_is_found_in_config():
-    assert login.devpiclient_get_password('http://foo', 'bar') == 'baz'
+    fp = StringIO('\n'.join(section))
+    assert login._find_password(fp, 'http://foo', 'bar') == 'baz'
 
-@pytest.mark.usefixtures('patched_open_raises')
-def test_password_is_none_when_pypirc_missing():
-    assert login.devpiclient_get_password('http://foo', 'bar') is None
-
-@pytest.mark.usefixtures('patched_open_conf_no_repo')
 def test_password_is_none_when_repo_missing():
-    assert login.devpiclient_get_password('http://foo', 'bar') is None
+    fp = StringIO('\n'.join(line for line in section if not line.startswith('repository:')))
+    assert login._find_password(fp, 'http://foo', 'bar') is None
 
-@pytest.mark.usefixtures('patched_open_conf_no_username')
 def test_password_is_none_when_username_missing():
+    fp = StringIO('\n'.join(line for line in section if not line.startswith('username:')))
+    assert login._find_password(fp, 'http://foo', 'bar') is None
+
+def test_password_is_none_when_password_missing():
+    fp = StringIO('\n'.join(line for line in section if not line.startswith('password:')))
+    assert login._find_password(fp, 'http://foo', 'bar') is None
+
+def test_password_is_none_when_pypirc_missing(mocker):
+    m = mocker.patch.object(pathlib.Path, 'is_file')
+    m.return_value = False
     assert login.devpiclient_get_password('http://foo', 'bar') is None
 
-@pytest.mark.usefixtures('patched_open_conf_no_password')
-def test_password_is_none_when_password_missing():
+def test_password_is_none_when_pypirc_not_readable(mocker):
+    m = mocker.mock_open()
+    m.side_effect = IOError
+    mocker.patch('io.open', m, create=True)
     assert login.devpiclient_get_password('http://foo', 'bar') is None

@@ -6,9 +6,20 @@ from command line will be used.
 """
 
 
+try:
+    import configparser
+    import pathlib
+except ImportError:  # python2 compat
+    import ConfigParser as configparser
+    import pathlib2 as pathlib
+
 from pluggy import HookimplMarker
-from devpi.pypirc import Auth
-from py.iniconfig import ParseError
+
+
+_key_repo = 'repository'
+_key_username = 'username'
+_key_password = 'password'
+_section_keys = (_key_repo, _key_username, _key_password, )
 
 
 hookimpl = HookimplMarker('devpiclient')
@@ -18,16 +29,26 @@ hookimpl = HookimplMarker('devpiclient')
 @hookimpl(tryfirst=True)
 def devpiclient_get_password(url, username):
     """See :py:func:`devpi.hookspecs.devpiclient_get_password`"""
-    try:
-        auth = Auth()
-    except (IOError, ParseError, ):
+    pypirc = pathlib.Path.home() / '.pypirc'
+    if not pypirc.is_file():
         return None
 
-    keys = ('repository', 'username', 'password', )
-    password = next((s['password'] for s in auth.ini.sections.values()
-                     if all(k in s for k in keys)
-                     and s['repository'].startswith(url)
-                     and s['username'] == username), None)
+    try:
+        with pypirc.open() as fp:
+            password = _find_password(fp, url, username)
+    except (OSError, IOError, ):
+        return None
+
     if password:
         print('Using {} credentials from .pypirc'.format(username))
     return password
+
+# ---------------------------------------------------------------------
+def _find_password(fp, url, username):
+    parser = configparser.ConfigParser()
+    parser.readfp(fp)
+    sections = (dict(parser.items(name)) for name in parser.sections())
+    return next((s[_key_password] for s in sections
+                 if all(k in s for k in _section_keys)
+                 and s[_key_repo].startswith(url)
+                 and s[_key_username] == username), None)
