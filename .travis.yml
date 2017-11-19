@@ -5,10 +5,16 @@ env:
   global:
   - _latest=3.6
 python:
-- 2.7
-- 3.4
-- 3.5
-- 3.6
+  - 2.7
+  - 3.4
+  - 3.5
+  - 3.6
+  - 3.7-dev
+  - nightly
+matrix:
+  allow_failures:
+    - python: 3.7-dev
+    - python: nightly
 # osx builds, see https://github.com/travis-ci/travis-ci/issues/2312
 # osx builds take too long on travis, turning off for now
 #matrix:
