@@ -30,9 +30,6 @@ hookimpl = HookimplMarker('devpiclient')
 def devpiclient_get_password(url, username):
     """See :py:func:`devpi.hookspecs.devpiclient_get_password`"""
     pypirc = os.path.join(os.path.expanduser('~'), '.pypirc')
-    if not os.path.isfile(pypirc):
-        return None
-
     try:
         with open(pypirc) as fp:
             password = _find_password(fp, url, username)
