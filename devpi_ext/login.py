@@ -8,10 +8,10 @@ from command line will be used.
 
 try:
     import configparser
-    import pathlib
-except ImportError:  # python2 compat
+except ImportError:  # pragma: no cover
+    # python2 compat
     import ConfigParser as configparser
-    import pathlib2 as pathlib
+import os
 
 from pluggy import HookimplMarker
 
@@ -29,12 +29,12 @@ hookimpl = HookimplMarker('devpiclient')
 @hookimpl(tryfirst=True)
 def devpiclient_get_password(url, username):
     """See :py:func:`devpi.hookspecs.devpiclient_get_password`"""
-    pypirc = pathlib.Path.home() / '.pypirc'
-    if not pypirc.is_file():
+    pypirc = os.path.join(os.path.expanduser('~'), '.pypirc')
+    if not os.path.isfile(pypirc):
         return None
 
     try:
-        with pypirc.open() as fp:
+        with open(pypirc) as fp:
             password = _find_password(fp, url, username)
     except (OSError, IOError, ):
         return None
@@ -46,6 +46,7 @@ def devpiclient_get_password(url, username):
 
 # ---------------------------------------------------------------------
 def _find_password(fp, url, username):
+    """Parses config from file-like object and searches for a password."""
     parser = configparser.ConfigParser()
     parser.readfp(fp)
     sections = (dict(parser.items(name)) for name in parser.sections())

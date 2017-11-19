@@ -1,9 +1,7 @@
 try:
     from StringIO import StringIO  # python2
-    import pathlib2 as pathlib
 except ImportError:
     from io import StringIO  # python3
-    import pathlib
 
 from devpi_ext import login
 
@@ -33,12 +31,19 @@ def test_password_is_none_when_password_missing():
     assert login._find_password(fp, 'http://foo', 'bar') is None
 
 def test_password_is_none_when_pypirc_missing(mocker):
-    m = mocker.patch.object(pathlib.Path, 'is_file')
+    m = mocker.patch('os.path.isfile')
     m.return_value = False
     assert login.devpiclient_get_password('http://foo', 'bar') is None
 
 def test_password_is_none_when_pypirc_not_readable(mocker):
     m = mocker.mock_open()
     m.side_effect = IOError
-    mocker.patch('io.open', m, create=True)
+    mocker.patch('devpi_ext.login.open', m, create=True)
     assert login.devpiclient_get_password('http://foo', 'bar') is None
+
+def test_password_is_found_when_pypirc_present_and_readable(mocker):
+    m = mocker.mock_open(read_data='\n'.join(section))
+    m.return_value.__iter__ = lambda self: iter(self.readline, '')
+    m.return_value.__next__ = lambda self: next(iter(self.readline, ''))
+    mocker.patch('devpi_ext.login.open', m, create=True)
+    assert login.devpiclient_get_password('http://foo', 'bar') == 'baz'
