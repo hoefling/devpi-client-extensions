@@ -33,10 +33,7 @@ setup(
     license='MIT',
     version=__version__,
     packages=find_packages(),
-    install_requires=[
-        'devpi-client>=3.0.0',
-        'pathlib2; python_version < "3"'
-    ],
+    install_requires=['devpi-client>=3.0.0'],
     url='https://github.com/hoefling/devpi-client-extensions',
     maintainer='Oleg Hoefling',
     maintainer_email='oleg.hoefling@gmail.com',
