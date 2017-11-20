@@ -17,3 +17,4 @@ readme_renderer = "*"
 [packages]
 
 devpi-client = ">=3.0.0"
+"RwOWoWMA" = {path = ".", editable = true}
