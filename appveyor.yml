@@ -22,11 +22,13 @@ install:
 
   - "pip install wheel pipenv"
   - "pipenv install --dev"
+  - "pipenv run pip list"
 
 build: off
 
 test_script:
-  - "pipenv run python setup.py test flake8"
+  - "pipenv run python setup.py flake8"
+  - "pipenv run pytest"
 
 after_test:
   - "pipenv run python setup.py bdist_wheel"
