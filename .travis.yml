@@ -44,9 +44,10 @@ before_install:
       pip install python-coveralls
   fi
 install:
-- pip install --requirement=requirements.txt
+- pip install pipenv --upgrade
+- pipenv install --dev --skip-lock
 script:
-- python setup.py test flake8 bdist_wheel
+- pipenv run python setup.py test flake8 bdist_wheel
 after_success:
 - |
   if [ "$TRAVIS_PYTHON_VERSION" == "$_latest" ]; then
