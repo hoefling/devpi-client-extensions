@@ -11,16 +11,25 @@ environment:
     - PYTHON: "C:\\Python36-x64"
 
 install:
-  - "%PYTHON%\\python.exe -m pip install wheel"
-  - "%PYTHON%\\python.exe -m pip install --requirement=requirements.txt"
+ # Prepend newly installed Python to the PATH of this build (this cannot be
+  # done from inside the powershell script as it would require to restart
+  # the parent CMD process).
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+
+  # Check that we have the expected version and architecture for Python
+  - "python --version"
+  - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
+
+  - "pip install wheel pipenv"
+  - "pipenv install --dev"
 
 build: off
 
 test_script:
-  - "%PYTHON%\\python.exe setup.py test flake8"
+  - "pipenv run python setup.py test flake8"
 
 after_test:
-  - "%PYTHON%\\python.exe setup.py bdist_wheel"
+  - "pipenv run python setup.py bdist_wheel"
 
 artifacts:
   - path: dist\*.whl
