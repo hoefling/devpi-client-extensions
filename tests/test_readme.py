@@ -1,6 +1,13 @@
+try:
+    from io import StringIO  # python3
+except ImportError:
+    from cStringIO import StringIO  # python2
 from readme_renderer.rst import render
 
 
 def test_markup_is_generated():
+    warnings = StringIO()
     with open('README.rst') as f:
-        assert render(f.read()) is not None
+        html = render(f.read(), stream=warnings)
+        warnings.seek(0)
+        assert html is not None, warnings.read()
