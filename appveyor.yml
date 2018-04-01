@@ -1,14 +1,36 @@
 # source: https://packaging.python.org/appveyor
+cache:
+  - '%LOCALAPPDATA%\pip\Cache'
+
 environment:
   matrix:
     - PYTHON: "C:\\Python27"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "32"
     - PYTHON: "C:\\Python34"
+      PYTHON_VERSION: "3.4.x"
+      PYTHON_ARCH: "32"
     - PYTHON: "C:\\Python35"
+      PYTHON_VERSION: "3.5.x"
+      PYTHON_ARCH: "32"
     - PYTHON: "C:\\Python36"
+      PYTHON_VERSION: "3.6.x"
+      PYTHON_ARCH: "32"
     - PYTHON: "C:\\Python27-x64"
+      PYTHON_VERSION: "2.7.10"
+      PYTHON_ARCH: "64"
     - PYTHON: "C:\\Python34-x64"
+      PYTHON_VERSION: "3.4.x"
+      PYTHON_ARCH: "64"
     - PYTHON: "C:\\Python35-x64"
+      PYTHON_VERSION: "3.5.x"
+      PYTHON_ARCH: "64"
     - PYTHON: "C:\\Python36-x64"
+      PYTHON_VERSION: "3.6.x"
+      PYTHON_ARCH: "64"
+
+init:
+  - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
 
 install:
  # Prepend newly installed Python to the PATH of this build (this cannot be
@@ -19,9 +41,16 @@ install:
   # Check that we have the expected version and architecture for Python
   - "python --version"
   - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
-
+  # Python 3.4 has setuptools==18.2 by default that is unable to install pipenv
+  - 'if "%PYTHON_VERSION%" == "3.4.x" (
+        pip install --upgrade setuptools
+    )'
   - "pip install wheel pipenv"
   - "pipenv install --dev"
+  # running pytest==3.5 fails on Python 2.7 because of missing funcsigs
+  - 'if "%PYTHON_VERSION%" == "2.7.x" (
+        pipenv run pip install funcsigs
+    )'
   - "pipenv run pip list"
 
 build: off
