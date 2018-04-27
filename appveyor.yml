@@ -52,6 +52,7 @@ install:
         pipenv run pip install funcsigs
     )'
   - "pipenv run pip list"
+  - "pipenv check"
 
 build: off
 
