@@ -1,6 +1,5 @@
 from io import open
 from setuptools import setup, find_packages
-from devpi_ext import __version__
 
 
 with open('README.rst', mode='r', encoding='utf8') as file:
@@ -28,10 +27,10 @@ def classifiers():
 
 setup(
     name='devpi-client-extensions',
+    use_scm_version=True,
     description='devpi client extensions',
     long_description='\n'.join((README, LICENSE, )),
     license='MIT',
-    version=__version__,
     packages=find_packages(),
     install_requires=['devpi-client>=3.0.0'],
     url='https://github.com/hoefling/devpi-client-extensions',

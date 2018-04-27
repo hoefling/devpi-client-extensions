@@ -13,6 +13,7 @@ pytest-runner = "*"
 pytest-cov = "*"
 pytest-mock = "*"
 readme_renderer = "*"
+setuptools-scm = "*"
 
 
 [packages]
