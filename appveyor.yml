@@ -58,6 +58,7 @@ build: off
 
 test_script:
   - "pipenv run python setup.py flake8"
+  - "pipenv run pytest --collect-only"
   - "pipenv run pytest"
 
 after_test:
