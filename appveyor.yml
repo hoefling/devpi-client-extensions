@@ -58,8 +58,14 @@ build: off
 
 test_script:
   - "pipenv run python setup.py flake8"
-  - "pipenv run pytest --collect-only"
-  - "pipenv run pytest"
+#  - "pipenv run pytest"
+  - "pipenv --venv > venvpath.out"
+  - "SET /p VENV=<venvpath.out"
+  - "del venvpath.out"
+  - "%VENV%\\Scripts\\activate.bat"
+  - "pip list"
+  - "pytest"
+  - "%VENV\\Scripts\\deactivate.bat"
 
 after_test:
   - "pipenv run python setup.py bdist_wheel"
