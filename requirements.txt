@@ -3,4 +3,4 @@ flake8
 pytest-runner
 pytest-cov
 pytest-mock
-readme-renderer
+readme-renderer==20.0
