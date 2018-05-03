@@ -1,6 +1,6 @@
 devpi-client>=3.0.0
 flake8
 pytest-runner
-pytest-cov
+pytest-cov==2.5.1
 pytest-mock
 readme-renderer
