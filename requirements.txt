@@ -3,4 +3,4 @@ flake8==3.5.0
 pytest-runner==4.2
 pytest-cov==2.5.1
 pytest-mock==1.10.0
-readme-renderer
+readme-renderer==20.0
