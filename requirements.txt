@@ -1,5 +1,5 @@
 devpi-client>=3.0.0
-flake8
+flake8==3.5.0
 pytest-runner
 pytest-cov
 pytest-mock
