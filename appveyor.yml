@@ -58,7 +58,7 @@ build: off
 
 test_script:
   - "pipenv run python setup.py flake8"
-#  - "pipenv run pytest"
+  - "pipenv run python -m pytest"
   - "pipenv --venv > venvpath.out"
   - "SET /p VENV=<venvpath.out"
   - "del venvpath.out"
