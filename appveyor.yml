@@ -47,14 +47,17 @@ install:
     )'
   - "pip install wheel pipenv"
   - "pipenv install --dev"
+
   # TODO: for some reason, PEP 508 env markers are not installed completely
   # colorama is required by pytest on windows
   - "pipenv run pip install colorama"
-  # end TODO
-  # running pytest==3.5 fails on Python 2.7 because of missing funcsigs
+  # running pytest==3.5 fails on Python 2.7 because of missing funcsigs and mock
+  # running flake8 fails on Python 2.7 because of missing configparser and enum34
   - 'if "%PYTHON_VERSION%" == "2.7.x" (
-        pipenv run pip install funcsigs
+        pipenv run pip install funcsigs mock configparser enum34
     )'
+  # end TODO
+
   - "pipenv run pip list"
   - "pipenv check"
 
