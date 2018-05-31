@@ -1,12 +1,9 @@
 [[source]]
-
-url = "https://pypi.python.org/simple"
+url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [dev-packages]
-
 flake8 = "*"
 pytest = "*"
 pytest-runner = "*"
@@ -14,9 +11,7 @@ pytest-cov = "*"
 pytest-mock = "*"
 readme_renderer = "*"
 setuptools-scm = "*"
-
+"e1839a8" = {path = ".", editable = true}
 
 [packages]
-
-"RwOWoWMA" = {path = ".", editable = true}
 devpi-client = ">=3.0.0"
