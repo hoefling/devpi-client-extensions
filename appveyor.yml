@@ -47,6 +47,10 @@ install:
     )'
   - "pip install wheel pipenv"
   - "pipenv install --dev"
+  # TODO: for some reason, PEP 508 env markers are not installed completely
+  # colorama is required by pytest on windows
+  - "pipenv run pip install colorama"
+  # end TODO
   # running pytest==3.5 fails on Python 2.7 because of missing funcsigs
   - 'if "%PYTHON_VERSION%" == "2.7.x" (
         pipenv run pip install funcsigs
@@ -58,14 +62,7 @@ build: off
 
 test_script:
   - "pipenv run python setup.py flake8"
-  - "pipenv run python -m pytest"
-  - "pipenv --venv > venvpath.out"
-  - "SET /p VENV=<venvpath.out"
-  - "del venvpath.out"
-  - "%VENV%\\Scripts\\activate.bat"
-  - "pip list"
-  - "pytest"
-  - "%VENV\\Scripts\\deactivate.bat"
+  - "pipenv run pytest"
 
 after_test:
   - "pipenv run python setup.py bdist_wheel"
