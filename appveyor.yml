@@ -57,6 +57,15 @@ install:
   # TODO: for some reason, PEP 508 env markers are not installed completely
   # colorama is required by pytest on windows
   - "pipenv run pip install colorama"
+  # pathlib2 is required for python older than 3.6
+  - "set pre36=false"
+  - 'if "%PYTHON_VERSION%" == "2.7.x" set pre36=true'
+  - 'if "%PYTHON_VERSION%" == "3.4.x" set pre36=true'
+  - 'if "%PYTHON_VERSION%" == "3.5.x" set pre36=true'
+  - 'if "%pre36%" == "true"  (
+        pipenv run pip install pathlib2
+    )'
+
   # running pytest==3.5 fails on Python 2.7 because of missing funcsigs and mock
   # running flake8 fails on Python 2.7 because of missing configparser and enum34
   - 'if "%PYTHON_VERSION%" == "2.7.x" (
