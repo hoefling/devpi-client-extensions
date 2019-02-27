@@ -45,10 +45,10 @@ before_install:
   fi
 install:
 - pip install pipenv --upgrade
-- pipenv install --dev --skip-lock
-- pipenv check
+- PIPENV_IGNORE_VIRTUALENVS=1 pipenv install --dev --skip-lock
+- PIPENV_IGNORE_VIRTUALENVS=1 pipenv check
 script:
-- pipenv run python setup.py test flake8 bdist_wheel
+- PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python setup.py test flake8 bdist_wheel
 after_success:
 - |
   if [ "$TRAVIS_PYTHON_VERSION" == "$_latest" ]; then
