@@ -76,14 +76,16 @@ install:
   - "pipenv run pip list"
   - "pipenv check"
 
-build: off
+build:
+  - "pipenv run python setup.py bdist_wheel"
+  - "pipenv run pip install dist\*.whl"
+  - "pipenv run python setup.py clean"
 
 test_script:
-  - "pipenv run python setup.py flake8"
   - "pipenv run pytest"
 
 after_test:
-  - "pipenv run python setup.py bdist_wheel"
+  - "pipenv run python setup.py flake8"
 
 artifacts:
   - path: dist\*.whl

@@ -6,6 +6,7 @@ os:
 env:
   global:
   - _latest=3.6
+  - PIPENV_IGNORE_VIRTUALENVS=1
 python:
   - 2.7
   - 3.4
@@ -46,10 +47,13 @@ before_install:
   fi
 install:
 - pip install pipenv --upgrade
-- PIPENV_IGNORE_VIRTUALENVS=1 pipenv install --dev --skip-lock
-- PIPENV_IGNORE_VIRTUALENVS=1 pipenv check
+- pipenv install --dev --skip-lock
+- pipenv check
 script:
-- PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python setup.py test flake8 bdist_wheel
+- pipenv run python setup.py bdist_wheel
+- PKGVER=$(pipenv run python -c "from setuptools_scm import get_version;print(get_version())")
+- pipenv run pip install dist/devpi_client_extensions-${PKGVER}-py2.py3-none-any.whl
+- pipenv run python setup.py clean test flake8
 after_success:
 - |
   if [ "$TRAVIS_PYTHON_VERSION" == "$_latest" ]; then
