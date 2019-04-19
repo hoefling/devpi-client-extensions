@@ -37,7 +37,7 @@ def devpiclient_get_password(url, username):
         return None
 
     if password:
-        print ('Using {} credentials from .pypirc'.format(username))
+        print('Using {} credentials from .pypirc'.format(username))
     return password
 
 
