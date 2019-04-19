@@ -52,6 +52,7 @@ install:
 script:
 - pipenv run python setup.py bdist_wheel
 - PKGVER=$(pipenv run python -c "from setuptools_scm import get_version;print(get_version())")
+- pipenv run pip uninstall -y devpi-client-extensions  # remove the editable install
 - pipenv run pip install dist/devpi_client_extensions-${PKGVER}-py2.py3-none-any.whl
 - pipenv run python setup.py clean
 - pipenv run pytest

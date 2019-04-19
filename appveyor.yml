@@ -78,6 +78,7 @@ install:
 
 build_script:
   - "pipenv run python setup.py bdist_wheel"
+  - "pipenv run pip uninstall -y devpi-client-extensions"  # remove the editable install
   - "pipenv run pip install devpi-client-extensions --find-links dist"
   - "pipenv run python setup.py clean"
 
