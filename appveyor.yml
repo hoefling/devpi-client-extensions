@@ -48,8 +48,9 @@ install:
   - "python --version"
   - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
   # Python 3.4 has setuptools==18.2 by default that is unable to install pipenv
+  # flake8 needs typing backport for python<3.5
   - 'if "%PYTHON_VERSION%" == "3.4.x" (
-        pip install --upgrade setuptools
+        pip install --upgrade setuptools typing
     )'
   - "pip install wheel pipenv"
   - "pipenv install --dev"
@@ -57,7 +58,7 @@ install:
   # TODO: for some reason, PEP 508 env markers are not installed completely
   # colorama is required by pytest on windows
   - "pipenv run pip install colorama"
-  # pathlib2 is required for python older than 3.6
+  # pathlib2 is required for python<3.6
   - "set pre36=false"
   - 'if "%PYTHON_VERSION%" == "2.7.x" set pre36=true'
   - 'if "%PYTHON_VERSION%" == "3.4.x" set pre36=true'
@@ -67,12 +68,11 @@ install:
     )'
 
   # running pytest==3.5 fails on Python 2.7 because of missing funcsigs and mock
-  # running flake8 fails on Python 2.7 because of missing configparser and enum34
+  # running flake8 fails on Python 2.7 because of missing configparser, enum34 and functools32
   - 'if "%PYTHON_VERSION%" == "2.7.x" (
-        pipenv run pip install funcsigs mock configparser enum34
+        pipenv run pip install funcsigs mock configparser enum34 functools32 typing "more-itertools<6.0.0,>=4.0.0"
     )'
   # end TODO
-
   - "pipenv run pip list"
   - "pipenv check"
 
