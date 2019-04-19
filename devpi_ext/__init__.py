@@ -10,6 +10,7 @@ def _read_version():  # pragma: no cover
         pass
     try:  # falling back to setuptools-scm
         from setuptools_scm import get_version
+
         return get_version(root=os.pardir, relative_to=__file__)
     except ImportError:
         return 'UNKNOWN'

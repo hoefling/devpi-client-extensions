@@ -19,7 +19,7 @@ from pluggy import HookimplMarker
 _key_repo = 'repository'
 _key_username = 'username'
 _key_password = 'password'
-_section_keys = (_key_repo, _key_username, _key_password, )
+_section_keys = (_key_repo, _key_username, _key_password)
 
 
 hookimpl = HookimplMarker('devpiclient')
@@ -33,11 +33,11 @@ def devpiclient_get_password(url, username):
     try:
         with open(pypirc) as fp:
             password = _find_password(fp, url, username)
-    except (OSError, IOError, ):
+    except (OSError, IOError):
         return None
 
     if password:
-        print('Using {} credentials from .pypirc'.format(username))
+        print ('Using {} credentials from .pypirc'.format(username))
     return password
 
 
@@ -47,7 +47,13 @@ def _find_password(fp, url, username):
     parser = configparser.ConfigParser()
     parser.readfp(fp)
     sections = (dict(parser.items(name)) for name in parser.sections())
-    return next((s[_key_password] for s in sections
-                 if all(k in s for k in _section_keys)
-                 and s[_key_repo].startswith(url)
-                 and s[_key_username] == username), None)
+    return next(
+        (
+            s[_key_password]
+            for s in sections
+            if all(k in s for k in _section_keys)
+            and s[_key_repo].startswith(url)
+            and s[_key_username] == username
+        ),
+        None,
+    )

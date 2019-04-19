@@ -29,7 +29,7 @@ setup(
     name='devpi-client-extensions',
     use_scm_version=True,
     description='devpi client extensions',
-    long_description='\n'.join((README, LICENSE, )),
+    long_description='\n'.join((README, LICENSE)),
     license='MIT',
     packages=find_packages(),
     install_requires=['devpi-client>=3.0.0'],
@@ -37,7 +37,5 @@ setup(
     maintainer='Oleg Hoefling',
     maintainer_email='oleg.hoefling@gmail.com',
     classifiers=classifiers(),
-    entry_points={
-        'devpi_client': ['devpi-client-ext-login = devpi_ext.login']
-    }
+    entry_points={'devpi_client': ['devpi-client-ext-login = devpi_ext.login']},
 )

@@ -1,0 +1,26 @@
+[tool.black]
+skip-string-normalization = true
+line-length = 88
+target_version = ['py27', 'py33', 'py34', 'py35', 'py36', 'py37', 'py38']
+include = '\.pyi?$'
+exclude = '''
+
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.mypy_cache
+    | \.tox
+    | build
+    | dist
+  )/
+)
+'''
+
+[tool.isort]
+force_alphabetical_sort_within_sections = true
+recursive = true
+line_length = 88
+known_first_party = 'devpi_ext'
+multi_line_output = 3
+include_trailing_comma = true

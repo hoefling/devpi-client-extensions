@@ -36,7 +36,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.intersphinx',
     'sphinx.ext.coverage',
-    'sphinx.ext.viewcode'
+    'sphinx.ext.viewcode',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -110,15 +110,15 @@ html_static_path = ['_static']
 #
 # This is required for the alabaster theme
 # refs: http://alabaster.readthedocs.io/en/latest/installation.html#sidebars
-#html_sidebars = {
-    #'**': [
-        #'about.html',
-        #'navigation.html',
-        #'relations.html',  # needs 'show_related': True theme option to display
-        #'searchbox.html',
-        #'donate.html',
-    #]
-#}
+# html_sidebars = {
+#'**': [
+#'about.html',
+#'navigation.html',
+#'relations.html',  # needs 'show_related': True theme option to display
+#'searchbox.html',
+#'donate.html',
+# ]
+# }
 
 
 # -- Options for HTMLHelp output ------------------------------------------
@@ -133,15 +133,12 @@ latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
     #
     # 'papersize': 'letterpaper',
-
     # The font size ('10pt', '11pt' or '12pt').
     #
     # 'pointsize': '10pt',
-
     # Additional stuff for the LaTeX preamble.
     #
     # 'preamble': '',
-
     # Latex figure (float) alignment
     #
     # 'figure_align': 'htbp',
@@ -151,8 +148,13 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'devpi-client-extensions.tex', u'devpi-client-extensions Documentation',
-     u'Oleg Höfling', 'manual'),
+    (
+        master_doc,
+        'devpi-client-extensions.tex',
+        u'devpi-client-extensions Documentation',
+        u'Oleg Höfling',
+        'manual',
+    )
 ]
 
 
@@ -161,8 +163,13 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'devpi-client-extensions', u'devpi-client-extensions Documentation',
-     [author], 1)
+    (
+        master_doc,
+        'devpi-client-extensions',
+        u'devpi-client-extensions Documentation',
+        [author],
+        1,
+    )
 ]
 
 
@@ -172,16 +179,20 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'devpi-client-extensions', u'devpi-client-extensions Documentation',
-     author, 'devpi-client-extensions', 'One line description of project.',
-     'Miscellaneous'),
+    (
+        master_doc,
+        'devpi-client-extensions',
+        u'devpi-client-extensions Documentation',
+        author,
+        'devpi-client-extensions',
+        'One line description of project.',
+        'Miscellaneous',
+    )
 ]
-
-
 
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
     'https://docs.python.org/': None,
-    'devpi': ('https://devpi.net/docs/devpi/devpi/stable/+doc/', None,)
+    'devpi': ('https://devpi.net/docs/devpi/devpi/stable/+doc/', None),
 }
