@@ -76,9 +76,9 @@ install:
   - "pipenv run pip list"
   - "pipenv check"
 
-build:
+build_script:
   - "pipenv run python setup.py bdist_wheel"
-  - "pipenv run pip install dist\*.whl"
+  - "pipenv run pip install devpi-client-extensions --find-links dist"
   - "pipenv run python setup.py clean"
 
 test_script:
