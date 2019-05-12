@@ -1,22 +1,23 @@
 dist: xenial
+addons:
+  apt:
+    packages:
+    - expect-dev # for unbuffer, see https://github.com/travis-ci/travis-ci/issues/7967
 sudo: required
 language: python
 os:
 - linux
 env:
   global:
-  - _latest=3.6
-  - PIPENV_IGNORE_VIRTUALENVS=1
+  - _latest=3.7
 python:
   - 2.7
   - 3.4
   - 3.5
   - 3.6
   - 3.7
-  - nightly
-matrix:
-  allow_failures:
-    - python: nightly
+  - 3.8-dev
+  - pypy3.5
 # osx builds, see https://github.com/travis-ci/travis-ci/issues/2312
 # osx builds take too long on travis, turning off for now
 #matrix:
@@ -41,23 +42,12 @@ before_install:
           brew update && brew install "$_osx_install"
       fi
   fi
-  # prepare test coverage for latest python version only
-  if [ "$TRAVIS_PYTHON_VERSION" == "$_latest" ]; then
-      pip install python-coveralls
-  fi
 install:
-- pip install pipenv --upgrade
-- pipenv install --dev --skip-lock
-- pipenv check
+- pip install poetry tox tox-travis --upgrade
 script:
-- pipenv run python setup.py bdist_wheel
-- PKGVER=$(pipenv run python -c "from setuptools_scm import get_version;print(get_version())")
-- pipenv run pip uninstall -y devpi-client-extensions  # remove the editable install
-- pipenv run pip install dist/devpi_client_extensions-${PKGVER}-py2.py3-none-any.whl
-- pipenv run python setup.py clean
-- pipenv run pytest
-- pipenv run python setup.py flake8
+- unbuffer tox -vv
 after_success:
+- poetry build -vvv --no-interaction --format=wheel
 - |
   if [ "$TRAVIS_PYTHON_VERSION" == "$_latest" ]; then
       coveralls
