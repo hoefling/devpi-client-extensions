@@ -18,7 +18,7 @@ python:
 - 3.6
 - 3.7
 - 3.8-dev
-- pypy2
+- pypy
 - pypy3.5
 # osx builds, see https://github.com/travis-ci/travis-ci/issues/2312
 # osx builds take too long on travis, turning off for now
