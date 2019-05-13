@@ -40,8 +40,8 @@ Stats
    :target: https://ci.appveyor.com/project/hoefling/devpi-client-extensions
    :alt: Windows build status
 
-.. |coverage| image:: https://coveralls.io/repos/github/hoefling/devpi-client-extensions/badge.svg?branch=master
-   :target: https://coveralls.io/github/hoefling/devpi-client-extensions?branch=master
+.. |coverage| image:: https://codecov.io/gh/hoefling/devpi-client-extensions/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/hoefling/devpi-client-extensions
    :alt: Coverage status
 
 .. |landscape| image:: https://landscape.io/github/hoefling/devpi-client-extensions/master/landscape.svg?style=flat
