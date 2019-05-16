@@ -43,7 +43,7 @@ def devpiclient_get_password(url, username):
 def _find_password(fp, url, username):
     """Parses config from file-like object and searches for a password."""
     parser = configparser.ConfigParser()
-    parser.readfp(fp)
+    parser.read_file(fp)
     sections = (dict(parser.items(name)) for name in parser.sections())
     return next(
         (
