@@ -25,7 +25,6 @@ _section_keys = (_key_repo, _key_username, _key_password)
 hookimpl = HookimplMarker('devpiclient')
 
 
-# ---------------------------------------------------------------------
 @hookimpl(tryfirst=True)
 def devpiclient_get_password(url, username):
     """See :py:func:`devpi.hookspecs.devpiclient_get_password`"""
@@ -41,7 +40,6 @@ def devpiclient_get_password(url, username):
     return password
 
 
-# ---------------------------------------------------------------------
 def _find_password(fp, url, username):
     """Parses config from file-like object and searches for a password."""
     parser = configparser.ConfigParser()
