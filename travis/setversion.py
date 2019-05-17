@@ -1,11 +1,14 @@
+import io
 import os
 import setuptools_scm
 import toml
 
 
-if __name__ == '__main__' and os.getenv('TRAVIS', None):
+# CI=true is supported by at least Gitlab, Travis and Appveyor
+if __name__ == '__main__' and os.environ.get('CI', None):
     conf = os.path.normpath(os.path.join(__file__, '..', '..', 'pyproject.toml'))
-    d = toml.load(conf)
+    with io.open(conf, encoding='utf-8') as fp:
+        d = toml.load(conf)
     d['tool']['poetry']['version'] = setuptools_scm.get_version()
-    with open(conf, 'w') as fp:
+    with io.open(conf, mode='w', encoding='utf-8') as fp:
         toml.dump(d, fp)
