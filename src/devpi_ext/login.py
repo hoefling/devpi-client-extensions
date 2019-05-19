@@ -1,3 +1,5 @@
+# pyre-strict
+
 """
 Defines custom hook for password search. This tries to get credentials
 from .pypirc file. Will return nothing if the file is not present
