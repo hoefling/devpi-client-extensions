@@ -48,6 +48,14 @@ def test_password_is_none_when_pypirc_not_readable(mocker):
     assert login.devpiclient_get_password('http://foo', 'bar') is None
 
 
+def test_password_is_none_when_pypirc_misses_credentials(mocker):
+    m = mocker.mock_open(read_data='\n'.join(section))
+    m.return_value.__iter__ = lambda self: iter(self.readline, '')
+    m.return_value.__next__ = lambda self: next(iter(self.readline, ''))
+    mocker.patch('devpi_ext.login.open', m, create=True)
+    assert login.devpiclient_get_password('http://foo', 'fizz') is None
+
+
 def test_password_is_found_when_pypirc_present_and_readable(mocker):
     m = mocker.mock_open(read_data='\n'.join(section))
     m.return_value.__iter__ = lambda self: iter(self.readline, '')
