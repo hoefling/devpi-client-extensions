@@ -24,8 +24,24 @@ environment:
       TOX_APPVEYOR_X64: 1
     - TOXENV: "py37"
       TOX_APPVEYOR_X64: 0
+    - TOXENV: "pypy"
+    - TOXENV: "pypy3"
+
+matrix:
+  allow_failures:
+    - TOXENV: "pypy3"  # pytest + pypy3 + windows raises; maybe open an issue?
 
 install:
+  - ps: |
+      if ($env:TOXENV -eq "pypy") {
+          (New-Object Net.WebClient).DownloadFile('https://bitbucket.org/pypy/pypy/downloads/pypy2.7-v7.1.1-win32.zip', "$env:appveyor_build_folder\pypy2.7-v7.1.1-win32.zip")
+          7z x pypy2.7-v7.1.1-win32.zip -oc:\
+          $env:path = "c:\pypy2.7-v7.1.1-win32;$env:path"
+      } elseif ($env:TOXENV -eq "pypy3") {
+          (New-Object Net.WebClient).DownloadFile('https://bitbucket.org/pypy/pypy/downloads/pypy3.6-v7.1.1-win32.zip', "$env:appveyor_build_folder\pypy3.6-v7.1.1-win32.zip")
+          7z x pypy3.6-v7.1.1-win32.zip -oc:\
+          $env:path = "c:\pypy3.6-v7.1.1-win32;$env:path"
+      }
   - "py -3.6 -m pip install poetry tox tox-appveyor --upgrade"
   - "py -3.6 -m pip install toml setuptools-scm --upgrade"
   - "py -3.6 travis\\setversion.py"
