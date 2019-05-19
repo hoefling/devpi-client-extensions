@@ -48,28 +48,29 @@ install:
 - pip install poetry tox tox-travis --upgrade
 - pip install toml setuptools-scm --upgrade
 - python travis/setversion.py
-
 script:
 - unbuffer tox -vv
 after_success:
 - poetry build -vvv --no-interaction --format=wheel
 deploy:
-- provider: releases
-  skip_cleanup: true
-  api_key:
-    secure: lfoVhw3l33gVOb7p0C7dvxZmRAi3T94iZTrcuSaerIR1TCMJWJ9IPPFPwD67UqNBB59Wjefl4PhuemWXYgtKiDOHAC4qihVVww9n/Fn8Y5M8vK2aiU97+IUzSqfQsQZQKo0yPb0dmROtrGOJYrODoV9H0dbs624M0Q0/oKK4B83N4cs7M93iXLkPfjDOCfUhcqBSlCpuUt9g1Yr6xjObmUXDVhrNDZNzmasajOFDpHQthFEZobK1abvW3ceLvuw0FzC5fZaFgbNZkRXBwQN1kTSezJa9bicnTDoAetAp0+J0yTGn6huCFYv9G8KwIWIqEIi4qclX+nhQxx+cV5D6OnxTt5AmmslrvAg72FNt2jv7eY/q8eCTswlqNzkHrVp4RDzZMiyky3U8OJIZwcf7A7L1V/M1vkwNHUYbihmZl7Yra/itYq213ZWYkRIlShnwSlhMKjJpS0egoBNcb7uMSPsFAMIehtfnk0p0F92l2VaE0M9nFzPU9iKAmxkab0I+cfzQK/q4oTZZhuPZ9eFjFV/xo3rJ7+mbo7Zb3pYwvPYT9LfjWmhpFtLrKMAMJ4wiqcqDhRVG7s75GcwaJcrvm+7FiyFfnninWjyQol8SGyCIA2as92o1OfY5SqIA4O3GmOsHNdJyqhWAY6RWSLRGIZKzgDIZe29W4RE6I+gvmlA=
-  file_glob: true
-  file: dist/*.whl
-  on:
-    tags: true
-    repo: hoefling/devpi-client-extensions
-  condition: "$TRAVIS_PYTHON_VERSION == $_latest"
-- provider: pypi
-  skip_cleanup: true
-  user: hoefling
-  password:
-    secure: oZ6MdoOz+mLDusZQGCK7nDdnVN3rh5vWXbm3lwJWLfQ0WfvsLW6NxXFB0vNGpcKCNHgaxbahqPHUpkzOJcAHqi+SyNiXUT3aFV+lGKZMaUhMdhLNI6hEwrUElM2fq3ELxMNrUFVFD2kx6AAOTdsdtMf3LCo6Z1xXPoOGZqylMDUVAkgc/2ij6ZfstzCGS1wS7Xsmnd5yFGzzlj0CO1Ystgdp0cDB2mD6qTslzf39BzyNpwHYlgt7BOYvLzH7yoHc+Mgpy6EfERrt+I7SfPf/4VFcpGLKSNEGw0c2wyc4aLSs/UpHoOhHwMaY6xC0yqLXu/kb81f3GfyVj7B+IkJiwDMJ2xu6n4kfVSohmsL21UIicJaBesapj77z+3YLSsYhjJstzbI6bJoKrnl49xNbrdgXO+299Rzrm3pb2XFw0t/7lnvRTkXPOHiBc21bocVsV19U9N2EeDqYXQyTsT09y2pwvBZLD3qaR1QIuQPGJZo6fxvdFcCcwFeHEEsaSEEINtanCwZHFFWAaqSwanpHGA4NbYpmrNLn24/gbDu650eG0Qj2biYCZTFUATn7wCS5k7avJUDhFHNtg3O1aDVeJ9pdN/P+ThqLs0DnbSg5//URS6IeOQZ0GAj6PFT4PSwVpmPHvkuSxeIwsMxBiJVD98F2TmpqVRkWCzIrDM6LAjQ=
-  distributions: bdist_wheel
-  on:
-    tags: true
-  condition: "$TRAVIS_PYTHON_VERSION == $_latest"
+  - provider: releases
+    skip_cleanup: true
+    skip_existing: true
+    api_key:
+      secure: Iozor2chzNMOHeFYXwOn0hIeA5V/pHXVgesyoUYGPhDX9DtcpqjfekBxV/rd3vv0oOD4PuNBeNZPKxAcemVeyIq3UFilce7t644bwHSjbybqCmN0gEJTPFdf++PsxJi1kuVhvnWHknWhv48FIT370DmJBpf+K2TK49rgxsTLEHvdlTx7JnFThdOOIx8mz4b0xmhJB+sxQ3gRChZBxcRAlljIDYEodyJ4sdGXQbht7RLk9Zp1AsDuwTbrDqp3wqPu17VRT01OtE4YgFZDpT2ph5+U8w6zurG6xGpXMKMQZNOJ4YbuIFEIFF2kpPeOAegx8jAZIeBhDdh0fGoTtTfCDNc8I9tfSDg5ClW5hmDutaTKF9qfdIAtIQGYz/wB4q6O0f435FfFZioKEOGFxNeR1p4+XvGIjuaeQTotgyEC/4ghWt3Ce4N+A0E6Xo1DrcI5hXUTT55LtBSrmgmBU5eHr60iucEE0shI0mo83hVP67xrpDJImuJa/FlvtYVUo59JuU1Ecd/PPnfg6QEuLOAzrw0dsIT2C9rwkIV357OiZ/ZDvCWgBye/ROsYZGLakauBuUgwZqdTX1NdrTWD9zeNK+JpZK654Df04c41qGM9RDYLVK1bJreVmZC7DaXYeogvDTqYoTTc56uP3qLchrRbyW8Q7xdt7Ha8XMDsMbXONmc=
+    file_glob: true
+    file: dist/*.whl
+    on:
+      tags: true
+      repo: hoefling/devpi-client-extensions
+      condition: "$TRAVIS_PYTHON_VERSION == $_latest"
+  - provider: pypi
+    skip_cleanup: true
+    skip_existing: true
+    user: hoefling
+    password:
+      secure: HSEQAMClJz0yO7TKF6gYxPy7y/JfAT6IRGrpebx4Vj31kBFUGhKPYuR9uniPBiVe6vr/qsJC2oNPAHDp+J/hs+MKblmmIMiL/Zxtum68UuOKxsuq2LbfYtgeqtz8j2AbJKBwhxhGTCgk2L8IKi57uqzQqv98GAJc2sK6Vf5Jz15b927X/iINacVQDJuBoiSK6JI5/7FMdPiAgy+mdmgnTLsay0CNk3A712q/gTtTl9PEhCi6cybiY8Xy37NDmG8EGWjFjh9ObhYO5rvsZ/aDf9/lZLDoUC/loxVQD1vy0DxNrwCZd1P5AYobTbwOGqXEarck+qmQuiyjyQBYE+z6kY1wEVc6J0QM+aaMlS1wCwsKNF6SAddRn2Sia04i/PKnwRZ/OP+e7r3GMvOkYro+Hg625oTCnMu7c1E+V8GLJim2mhdyoZ+54lm6yB/N/oMuUi3oJsb+WtzeXITMqUTWhnvkwzcDQMOpIfejpRqTsY7k9d2wl8zS6GETbQeZ7+RLwyx4syzxP+RZvpMBmOXuN9P6T7aWKo4UrZbYZjdIYOhsMkyvgvqxL2mEgZxCp2odLAd1KhmmD0IRIeyDdLGhxPXZaPMH8nznA5afjD6LUjVnLa1AZbvaa8D3xmvjTPXqqF0xJiWhiHp6XdsWzYbCLyzYzH5n2aIC0PNmHtFOIuY=
+    distributions: bdist_wheel
+    on:
+      tags: true
+      condition: "$TRAVIS_PYTHON_VERSION == $_latest"
