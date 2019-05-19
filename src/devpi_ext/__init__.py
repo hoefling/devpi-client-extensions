@@ -1,18 +1,12 @@
-import os
-
-from pkg_resources import DistributionNotFound, get_distribution
+__all__ = ['__version__']
 
 
-def _read_version():  # pragma: no cover
+def _read_version():
     try:  # reading the version from installation metadata
-        return get_distribution('devpi-client-extensions').version
-    except DistributionNotFound:
-        pass
-    try:  # falling back to setuptools-scm
-        from setuptools_scm import get_version
+        from pkg_resources import DistributionNotFound, get_distribution
 
-        return get_version(root=os.pardir, relative_to=__file__)
-    except ImportError:
+        return get_distribution('devpi-client-extensions').version
+    except (ImportError, DistributionNotFound):
         return 'UNKNOWN'
 
 
