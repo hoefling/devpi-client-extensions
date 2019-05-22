@@ -15,7 +15,7 @@ except ImportError:  # pragma: no cover
     import ConfigParser as configparser
 import os
 
-from pluggy import HookimplMarker
+import devpi.main
 
 
 _key_repo = 'repository'
@@ -24,10 +24,7 @@ _key_password = 'password'
 _section_keys = (_key_repo, _key_username, _key_password)
 
 
-hookimpl = HookimplMarker('devpiclient')
-
-
-@hookimpl(tryfirst=True)
+@devpi.main.hookimpl(tryfirst=True)
 def devpiclient_get_password(url, username):
     """See :py:func:`devpi.hookspecs.devpiclient_get_password`"""
     pypirc = os.path.join(os.path.expanduser('~'), '.pypirc')
