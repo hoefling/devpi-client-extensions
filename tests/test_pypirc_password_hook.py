@@ -38,14 +38,14 @@ def test_password_is_none_when_password_missing():
 def test_password_is_none_when_pypirc_missing(mocker):
     m = mocker.patch('os.path.isfile')
     m.return_value = False
-    assert login.devpiclient_get_password('http://foo', 'bar') is None
+    assert login.PypircPlugin().devpiclient_get_password('http://foo', 'bar') is None
 
 
 def test_password_is_none_when_pypirc_not_readable(mocker):
     m = mocker.mock_open()
     m.side_effect = IOError
     mocker.patch('devpi_ext.login.open', m, create=True)
-    assert login.devpiclient_get_password('http://foo', 'bar') is None
+    assert login.PypircPlugin().devpiclient_get_password('http://foo', 'bar') is None
 
 
 def test_password_is_none_when_pypirc_misses_credentials(mocker):
@@ -53,7 +53,7 @@ def test_password_is_none_when_pypirc_misses_credentials(mocker):
     m.return_value.__iter__ = lambda self: iter(self.readline, '')
     m.return_value.__next__ = lambda self: next(iter(self.readline, ''))
     mocker.patch('devpi_ext.login.open', m, create=True)
-    assert login.devpiclient_get_password('http://foo', 'fizz') is None
+    assert login.PypircPlugin().devpiclient_get_password('http://foo', 'fizz') is None
 
 
 def test_password_is_found_when_pypirc_present_and_readable(mocker):
@@ -61,4 +61,4 @@ def test_password_is_found_when_pypirc_present_and_readable(mocker):
     m.return_value.__iter__ = lambda self: iter(self.readline, '')
     m.return_value.__next__ = lambda self: next(iter(self.readline, ''))
     mocker.patch('devpi_ext.login.open', m, create=True)
-    assert login.devpiclient_get_password('http://foo', 'bar') == 'baz'
+    assert login.PypircPlugin().devpiclient_get_password('http://foo', 'bar') == 'baz'

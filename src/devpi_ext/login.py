@@ -24,19 +24,20 @@ _key_password = 'password'
 _section_keys = (_key_repo, _key_username, _key_password)
 
 
-@devpi.main.hookimpl(tryfirst=True)
-def devpiclient_get_password(url, username):
-    """See :py:func:`devpi.hookspecs.devpiclient_get_password`"""
-    pypirc = os.path.join(os.path.expanduser('~'), '.pypirc')
-    try:
-        with open(pypirc) as fp:
-            password = _find_password(fp, url, username)
-    except (OSError, IOError):
-        return None
+class PypircPlugin:
+    @devpi.main.hookimpl(tryfirst=True)
+    def devpiclient_get_password(self, url, username):
+        """See :py:func:`devpi.hookspecs.devpiclient_get_password`"""
+        pypirc = os.path.join(os.path.expanduser('~'), '.pypirc')
+        try:
+            with open(pypirc) as fp:
+                password = _find_password(fp, url, username)
+        except (OSError, IOError):
+            return None
 
-    if password:
-        print('Using {} credentials from .pypirc'.format(username))
-    return password
+        if password:
+            print('Using {} credentials from .pypirc'.format(username))
+        return password
 
 
 def _find_password(fp, url, username):
@@ -54,3 +55,6 @@ def _find_password(fp, url, username):
         ),
         None,
     )
+
+
+_pypirc = PypircPlugin()

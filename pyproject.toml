@@ -25,7 +25,7 @@ packages = [
 ]
 
 [tool.poetry.plugins.'devpi_client']
-'devpi-client-ext-login' = 'devpi_ext.login'
+'devpi-client-ext-login' = 'devpi_ext.login:_pypirc'
 
 [tool.poetry.dependencies]
 python = '~2.7 || ^3.4'
@@ -40,6 +40,7 @@ pytest-mock = '^1.10'
 readme-renderer = '^24.0'
 unify = '^0.4.0'
 tox = '^3.9'
+toml = "^0.10.0"
 
 [tool.black]
 skip-string-normalization = true
