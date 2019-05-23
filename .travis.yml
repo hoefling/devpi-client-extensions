@@ -46,6 +46,7 @@ before_install:
   fi
 install:
 - pip install poetry tox tox-travis --upgrade
+# workaround for poetry missing setuptools-scm support
 - pip install toml setuptools-scm --upgrade
 - python travis/setversion.py
 script:
