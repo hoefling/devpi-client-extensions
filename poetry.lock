@@ -297,7 +297,7 @@ version = "1.0.22"
 [[package]]
 category = "main"
 description = "Low-level, pure Python DBus protocol wrapper."
-marker = "sys_platform == \"linux\""
+marker = "sys_platform == \"linux\" or python_version >= \"3.5\""
 name = "jeepney"
 optional = true
 python-versions = ">=3.5"
@@ -706,10 +706,10 @@ python-versions = "*"
 version = "0.5.1"
 
 [extras]
-keyring = ["keyring"]
+keyring = ["keyring", "jeepney"]
 
 [metadata]
-content-hash = "ab65405c0b4b5b6cd4d71947ab417b81511acf817a74d6165ebad942d4b336bb"
+content-hash = "9dbb08efd23f39602cc24bb1de65e0bfbc43bbd5616d44eb3730b2a2e3b16d0e"
 python-versions = '~2.7 || ^3.4'
 
 [metadata.hashes]
