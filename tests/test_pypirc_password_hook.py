@@ -1,9 +1,12 @@
+import pytest
+from devpi_ext import login
+
 try:
     from StringIO import StringIO  # python2
+    import __builtin__ as builtins
 except ImportError:
     from io import StringIO  # python3
-
-from devpi_ext import login
+    import builtins
 
 
 section = ['[foo]', 'repository: http://foo', 'username: bar', 'password: baz']
@@ -35,30 +38,30 @@ def test_password_is_none_when_password_missing():
     assert login._find_password(fp, 'http://foo', 'bar') is None
 
 
-def test_password_is_none_when_pypirc_missing(mocker):
-    m = mocker.patch('os.path.isfile')
-    m.return_value = False
-    assert login.PypircPlugin().devpiclient_get_password('http://foo', 'bar') is None
+def test_password_is_none_when_pypirc_missing(monkeypatch, tmp_path):
+    monkeypatch.setattr('os.path.expanduser', lambda *args: str(tmp_path))
+    assert (tmp_path / '.pypirc').is_file() is False
+    assert login.PypircPlugin().devpiclient_get_password('http://fizz', 'fizz') is None
 
 
-def test_password_is_none_when_pypirc_not_readable(mocker):
-    m = mocker.mock_open()
-    m.side_effect = IOError
-    mocker.patch('devpi_ext.login.open', m, create=True)
-    assert login.PypircPlugin().devpiclient_get_password('http://foo', 'bar') is None
+def test_password_is_none_when_pypirc_not_readable(monkeypatch):
+    def open_(*args, **kwargs):
+        raise IOError()
+
+    monkeypatch.setattr(builtins, 'open', open_)
+    assert login.PypircPlugin().devpiclient_get_password('http://fizz', 'fizz') is None
 
 
-def test_password_is_none_when_pypirc_misses_credentials(mocker):
-    m = mocker.mock_open(read_data='\n'.join(section))
-    m.return_value.__iter__ = lambda self: iter(self.readline, '')
-    m.return_value.__next__ = lambda self: next(iter(self.readline, ''))
-    mocker.patch('devpi_ext.login.open', m, create=True)
-    assert login.PypircPlugin().devpiclient_get_password('http://foo', 'fizz') is None
+@pytest.mark.usefixtures('pypirc')
+def test_password_is_none_when_pypirc_misses_credentials():
+    assert (
+        login.PypircPlugin().devpiclient_get_password('http://missing', 'missing')
+        is None
+    )
 
 
+@pytest.mark.usefixtures('pypirc')
 def test_password_is_found_when_pypirc_present_and_readable(mocker):
-    m = mocker.mock_open(read_data='\n'.join(section))
-    m.return_value.__iter__ = lambda self: iter(self.readline, '')
-    m.return_value.__next__ = lambda self: next(iter(self.readline, ''))
-    mocker.patch('devpi_ext.login.open', m, create=True)
-    assert login.PypircPlugin().devpiclient_get_password('http://foo', 'bar') == 'baz'
+    assert (
+        login.PypircPlugin().devpiclient_get_password('http://fizz', 'fizz') == 'fizz'
+    )

@@ -5,12 +5,6 @@ import toml
 import pytest
 from _pytest import pathlib
 
-try:
-    import configparser
-except ImportError:  # pragma: no cover
-    # python2 compat
-    import ConfigParser as configparser
-
 
 @pytest.fixture(scope='session', params=('_pypirc_plugin', '_keyring_plugin'))
 def plugin_name(request):
@@ -23,27 +17,6 @@ def plugin_name(request):
     )
 
 
-@pytest.fixture(autouse=True)
-def pypirc(monkeypatch, tmp_path):
-    parser = configparser.ConfigParser()
-    parser.read_dict(
-        {
-            'distutils': {'index-servers': '\nfizz'},
-            'fizz': {
-                'repository': 'http://fizz',
-                'username': 'fizz',
-                'password': 'fizz',
-            },
-        }
-    )
-    pypirc = tmp_path / '.pypirc'
-    with pypirc.open('w', encoding='utf-8') as fp:
-        parser.write(fp)
-    with monkeypatch.context() as m:
-        m.setattr('os.path.expanduser', lambda *args: str(tmp_path))
-        yield
-
-
 def test_devpi_ext_plugin_registered(plugin_name):
     pm = get_pluginmanager()
     assert pm.is_registered(pm.get_plugin(plugin_name))
@@ -52,10 +25,12 @@ def test_devpi_ext_plugin_registered(plugin_name):
 def test_hookimpl_is_tryfirst(plugin_name):
     pm = get_pluginmanager()
     impls = pm.hook.devpiclient_get_password.get_hookimpls()
+    print(impls)
     impl = next(i for i in impls if i.plugin_name == plugin_name)
     assert impl.tryfirst is True
 
 
+@pytest.mark.usefixtures('pypirc')
 @pytest.mark.parametrize('plugin', ('_pypirc_plugin', '_keyring_plugin'))
 def test_devpi_ext_plugin_hook_called(monkeypatch, plugin):
     monkeypatch.setattr(login, 'get_password', lambda service, user: 'fizz')
