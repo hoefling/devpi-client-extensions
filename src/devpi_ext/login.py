@@ -18,7 +18,10 @@ import os
 try:
     from keyring import get_password
 except ImportError:
-    get_password = lambda service_name, username: None
+
+    def get_password(service_name, username):
+        return None
+
 
 import devpi.main
 

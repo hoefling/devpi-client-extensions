@@ -1,4 +1,3 @@
-import sys
 from devpi.main import get_pluginmanager
 from devpi_ext import login
 import toml
