@@ -3,7 +3,8 @@ devpi-client-extensions
 
 Some useful stuff around `devpi client`_. Although this package is proudly named *extensions*,
 currently there is only one thing implemented ready to be used: a hook that uses passwords from
-``.pypirc`` on login to devpi server so you don't have to enter your password if you store it for upload anyway.
+``.pypirc`` or `keyring`_ on login to devpi server so you don't have to enter your password
+if you store it for upload anyway.
 
 Install
 -------
@@ -21,6 +22,24 @@ Just use the ``devpi login`` command as usual:
 
    $ devpi login hoefling
    Using hoefling credentials from .pypirc
+   logged in 'hoefling', credentials valid for 10.00 hours
+
+Keyring Support
+---------------
+
+Since version 0.3, reading credentials using `keyring`_ is supported. Install the package with `keyring` extras:
+
+.. code-block:: sh
+
+   $ pip install devpi-client-extensions[keyring]
+
+Example with storing the password in keyring:
+
+.. code-block:: sh
+
+   $ keyring set https://my.devpi.url/ hoefling
+   $ devpi login hoefling
+   Using hoefling credentials from keyring
    logged in 'hoefling', credentials valid for 10.00 hours
 
 Stats
@@ -55,4 +74,6 @@ Stats
 .. |black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/ambv/black
 
-.. _devpi client: https://github.com/devpi/devpi
+.. _devpi client: https://pypi.org/project/devpi-client/
+
+.. _keyring: https://pypi.org/project/keyring/
