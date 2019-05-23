@@ -11,7 +11,6 @@ def no_keyring_installed(monkeypatch):
 
     def mocked_import(name, *args):
         if name == 'keyring':
-            print('xoxoxo')
             raise ImportError()
         return import_orig(name, *args)
 

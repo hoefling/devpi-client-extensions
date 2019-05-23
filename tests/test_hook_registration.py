@@ -24,7 +24,6 @@ def test_devpi_ext_plugin_registered(plugin_name):
 def test_hookimpl_is_tryfirst(plugin_name):
     pm = get_pluginmanager()
     impls = pm.hook.devpiclient_get_password.get_hookimpls()
-    print(impls)
     impl = next(i for i in impls if i.plugin_name == plugin_name)
     assert impl.tryfirst is True
 
