@@ -25,14 +25,22 @@ packages = [
 ]
 
 [tool.poetry.plugins.'devpi_client']
-'devpi-client-ext-login' = 'devpi_ext.login:_pypirc'
+'devpi-client-ext-login-pypirc' = 'devpi_ext.login:_pypirc_plugin'
+'devpi-client-ext-login-keyring' = 'devpi_ext.login:_keyring_plugin [keyring]'
 
 [tool.poetry.dependencies]
 python = '~2.7 || ^3.4'
 devpi-client = '>=3.0.0'
+keyring = { version = '*', optional = true }
+
+# workaround for https://github.com/sdispater/poetry/issues/1121
+jeepney = { version = '*', optional = true, python = '>=3.5' }
+
+[tool.poetry.extras]
+keyring = ['keyring', 'jeepney']
 
 [tool.poetry.dev-dependencies]
-#black = {version = '>=19.3b0', allows-prereleases = true}
+black = { version = '>=19.3b0', allows-prereleases = true, python = '^3.6' }
 flake8 = '^3.7'
 pytest = '^4.0'
 pytest-cov = '^2.7'

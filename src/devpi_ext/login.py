@@ -15,6 +15,14 @@ except ImportError:  # pragma: no cover
     import ConfigParser as configparser
 import os
 
+try:
+    from keyring import get_password
+except ImportError:
+
+    def get_password(service_name, username):
+        return None
+
+
 import devpi.main
 
 
@@ -57,4 +65,14 @@ def _find_password(fp, url, username):
     )
 
 
-_pypirc = PypircPlugin()
+class KeyringPlugin:
+    @devpi.main.hookimpl(tryfirst=True)
+    def devpiclient_get_password(self, url, username):
+        password = get_password(url, username)
+        if password:
+            print('Using {} credentials from keyring'.format(username))
+        return password
+
+
+_pypirc_plugin = PypircPlugin()
+_keyring_plugin = KeyringPlugin()

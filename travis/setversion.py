@@ -1,3 +1,8 @@
+"""
+Workaround for poetry missing setuptools-scm support,
+see https://github.com/sdispater/poetry/issues/185
+"""
+
 import io
 import os
 import setuptools_scm

@@ -1,19 +1,9 @@
-import sys
 import pytest
 from pkg_resources import DistributionNotFound
 
 
 class DistMock:
     version = '1.2.3.dev123'
-
-
-@pytest.fixture
-def unload_imports():
-    for mod in ('devpi_ext', 'devpi_ext.login'):
-        try:
-            del sys.modules[mod]
-        except KeyError:
-            continue
 
 
 @pytest.mark.usefixtures('unload_imports')
