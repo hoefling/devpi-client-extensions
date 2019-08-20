@@ -45,7 +45,8 @@ before_install:
       fi
   fi
 install:
-- pip install poetry tox tox-travis --upgrade
+# poetry==0.12.17 introduced incompatibility with Python 3.4, see https://github.com/sdispater/poetry/issues/1223
+- pip install tox tox-travis "poetry;python_version!='3.4'" "poetry!=0.12.17;python_version=='3.4'" --upgrade
 # workaround for poetry missing setuptools-scm support
 - pip install toml setuptools-scm --upgrade
 - python travis/setversion.py
