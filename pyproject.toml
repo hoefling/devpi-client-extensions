@@ -1,6 +1,6 @@
 [tool.poetry]
 name = 'devpi-client-extensions'
-version = '0.2.1'
+version = '0.3.1.dev0'
 description = 'devpi client extensions'
 authors = ['Oleg Höfling <oleg.hoefling@gmail.com>']
 license = 'MIT'
@@ -33,14 +33,11 @@ python = '~2.7 || ^3.4'
 devpi-client = '>=3.0.0'
 keyring = { version = '*', optional = true }
 
-# workaround for https://github.com/sdispater/poetry/issues/1121
-jeepney = { version = '*', optional = true, python = '>=3.5' }
-
 [tool.poetry.extras]
 keyring = ['keyring', 'jeepney']
 
 [tool.poetry.dev-dependencies]
-black = { version = '>=19.3b0', allows-prereleases = true, python = '^3.6' }
+black = { version = '>=19.3b0', allow-prereleases = true, python = '^3.6' }
 flake8 = '^3.7'
 pytest = '^4.0'
 pytest-cov = '^2.7'
