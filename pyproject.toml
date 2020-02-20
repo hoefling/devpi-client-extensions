@@ -29,7 +29,7 @@ packages = [
 'devpi-client-ext-login-keyring' = 'devpi_ext.login:_keyring_plugin [keyring]'
 
 [tool.poetry.dependencies]
-python = '~2.7 || ^3.4'
+python = '^3.5'
 devpi-client = '>=3.0.0'
 keyring = { version = '*', optional = true }
 
@@ -46,6 +46,7 @@ readme-renderer = '^24.0'
 unify = '^0.4.0'
 tox = '^3.9'
 toml = "^0.10.0"
+mypy = "^0.761"
 
 [tool.black]
 skip-string-normalization = true
