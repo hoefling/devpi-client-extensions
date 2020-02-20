@@ -1,10 +1,9 @@
 # pyre-strict
 
-
 __all__ = ['__version__']
 
 
-def _read_version():
+def _read_version() -> str:
     try:  # reading the version from installation metadata
         from pkg_resources import DistributionNotFound, get_distribution
 

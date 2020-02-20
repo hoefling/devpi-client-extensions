@@ -1,9 +1,0 @@
-from typing import Optional, Text, TextIO, Tuple
-
-class PypircPlugin:
-    def devpiclient_get_password(self, url: Text, username: Text) -> Optional[Text]: ...
-
-def _find_password(fp: TextIO, url: Text, username: Text) -> Optional[Text]: ...
-
-class KeyringPlugin:
-    def devpiclient_get_password(self, url: Text, username: Text) -> Optional[Text]: ...
