@@ -45,8 +45,8 @@ pytest-mock = '^1.10'
 readme-renderer = '^24.0'
 unify = '^0.4.0'
 tox = '^3.9'
-toml = "^0.10.0"
-mypy = "^0.761"
+toml = '^0.10.0'
+mypy = { version = '^0.761', markers = 'implementation_name == "cpython"' }
 
 [tool.black]
 skip-string-normalization = true
@@ -76,5 +76,5 @@ multi_line_output = 3
 include_trailing_comma = true
 
 [build-system]
-requires = ['poetry>=0.12']
+requires = ['poetry>=1.0']
 build-backend = 'poetry.masonry.api'
