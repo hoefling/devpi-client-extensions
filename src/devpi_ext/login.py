@@ -1,16 +1,17 @@
 # pyre-strict
 
 """
-Defines custom hook for password search. This tries to get credentials
-from .pypirc file. Will return nothing if the file is not present
-or not well-formed. In that case, the standard hook with entering password
-from command line will be used.
+Defines custom hook for password search.
+
+This tries to get credentials from :file:`.pypirc` file. Will return nothing
+if the file is not present or not well-formed. In that case, the standard hook
+with entering password from command line will be used.
 """
 
 
 import configparser
 import os
-from typing import Optional, TextIO, Tuple
+from typing import Optional, TextIO
 
 import devpi.main
 
@@ -19,24 +20,27 @@ try:
 except ImportError:
 
     def get_password(service_name: str, username: str) -> Optional[str]:
+        """Keyring dummy replacement if ``keyring`` is not installed."""
         return None
 
 
 _key_repo = 'repository'
 _key_username = 'username'
-_key_password = 'password'
+_key_password = 'password'  # nosec
 _section_keys = (_key_repo, _key_username, _key_password)
 
 
 class PypircPlugin:
+    """Plugin that implements reading the password from :file:`.pypirc` file."""
+
     @devpi.main.hookimpl(tryfirst=True)
     def devpiclient_get_password(self, url: str, username: str) -> Optional[str]:
-        """See :py:func:`devpi.hookspecs.devpiclient_get_password`"""
+        """.. seealso:: :py:func:`devpi.hookspecs.devpiclient_get_password`."""
         pypirc = os.path.join(os.path.expanduser('~'), '.pypirc')
         try:
             with open(pypirc) as fp:
                 password = _find_password(fp, url, username)
-        except (OSError, IOError):
+        except OSError:
             return None
 
         if password:
@@ -45,7 +49,7 @@ class PypircPlugin:
 
 
 def _find_password(fp: TextIO, url: str, username: str) -> Optional[str]:
-    """Parses config from file-like object and searches for a password."""
+    """Parse config from file-like object and search for a password."""
     parser = configparser.ConfigParser()
     parser.read_file(fp)
     sections = (dict(parser.items(name)) for name in parser.sections())
@@ -62,8 +66,11 @@ def _find_password(fp: TextIO, url: str, username: str) -> Optional[str]:
 
 
 class KeyringPlugin:
+    """Plugin that implements reading the password from ``keyring`` backend."""
+
     @devpi.main.hookimpl(tryfirst=True)
     def devpiclient_get_password(self, url: str, username: str) -> Optional[str]:
+        """.. seealso:: :py:func:`devpi.hookspecs.devpiclient_get_password`."""
         password = get_password(url, username)
         if password:
             print('Using {} credentials from keyring'.format(username))

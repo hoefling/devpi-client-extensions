@@ -61,7 +61,14 @@ def test_password_is_none_when_pypirc_misses_credentials():
 
 
 @pytest.mark.usefixtures('pypirc')
-def test_password_is_found_when_pypirc_present_and_readable(mocker):
+def test_password_is_found_when_pypirc_present_and_readable():
     assert (
         login.PypircPlugin().devpiclient_get_password('http://fizz', 'fizz') == 'fizz'
     )
+
+
+@pytest.mark.usefixtures('pypirc')
+def test_printed_message_when_password_is_found_in_pypirc(capsys):
+    login.PypircPlugin().devpiclient_get_password('http://fizz', 'fizz') == 'fizz'
+    captured = capsys.readouterr()
+    assert captured.out == 'Using fizz credentials from .pypirc\n'

@@ -1,5 +1,7 @@
 # pyre-strict
 
+"""Provides version information read from package metadata."""
+
 __all__ = ['__version__']
 
 

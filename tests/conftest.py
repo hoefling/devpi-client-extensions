@@ -1,12 +1,7 @@
+import configparser
 import sys
+
 import pytest
-
-
-try:
-    import configparser
-except ImportError:  # pragma: no cover
-    # python2 compat
-    import ConfigParser as configparser
 
 
 @pytest.fixture

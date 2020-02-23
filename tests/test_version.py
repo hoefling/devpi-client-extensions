@@ -1,5 +1,6 @@
-import pytest
 from pkg_resources import DistributionNotFound
+
+import pytest
 
 
 class DistMock:
