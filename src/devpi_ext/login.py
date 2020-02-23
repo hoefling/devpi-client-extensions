@@ -10,8 +10,8 @@ with entering password from command line will be used.
 
 
 import configparser
-import os
-from typing import Optional, TextIO
+from pathlib import Path
+from typing import Iterable, Optional, Tuple
 
 import devpi.main
 
@@ -27,7 +27,7 @@ except ImportError:
 _key_repo = 'repository'
 _key_username = 'username'
 _key_password = 'password'  # nosec
-_section_keys = (_key_repo, _key_username, _key_password)
+_section_keys: Tuple[str, str, str] = (_key_repo, _key_username, _key_password)
 
 
 class PypircPlugin:
@@ -36,9 +36,9 @@ class PypircPlugin:
     @devpi.main.hookimpl(tryfirst=True)
     def devpiclient_get_password(self, url: str, username: str) -> Optional[str]:
         """.. seealso:: :py:func:`devpi.hookspecs.devpiclient_get_password`."""
-        pypirc = os.path.join(os.path.expanduser('~'), '.pypirc')
+        pypirc = Path.home() / '.pypirc'
         try:
-            with open(pypirc) as fp:
+            with pypirc.open() as fp:
                 password = _find_password(fp, url, username)
         except OSError:
             return None
@@ -48,7 +48,7 @@ class PypircPlugin:
         return password
 
 
-def _find_password(fp: TextIO, url: str, username: str) -> Optional[str]:
+def _find_password(fp: Iterable[str], url: str, username: str) -> Optional[str]:
     """Parse config from file-like object and search for a password."""
     parser = configparser.ConfigParser()
     parser.read_file(fp)
