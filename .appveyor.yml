@@ -4,14 +4,6 @@ cache:
 
 environment:
   matrix:
-    - TOXENV: "py27"
-      TOX_APPVEYOR_X64: 1
-    - TOXENV: "py27"
-      TOX_APPVEYOR_X64: 0
-    - TOXENV: "py34"
-      TOX_APPVEYOR_X64: 1
-    - TOXENV: "py34"
-      TOX_APPVEYOR_X64: 0
     - TOXENV: "py35"
       TOX_APPVEYOR_X64: 1
     - TOXENV: "py35"
@@ -24,7 +16,10 @@ environment:
       TOX_APPVEYOR_X64: 1
     - TOXENV: "py37"
       TOX_APPVEYOR_X64: 0
-    - TOXENV: "pypy"
+    - TOXENV: "py38"
+      TOX_APPVEYOR_X64: 1
+    - TOXENV: "py38"
+      TOX_APPVEYOR_X64: 0
     - TOXENV: "pypy3"
 
 matrix:
@@ -43,8 +38,10 @@ install:
           $env:path = "c:\pypy3.6-v7.1.1-win32;$env:path"
       }
   - "py -3.6 -m pip install poetry tox tox-appveyor --upgrade"
-  - "py -3.6 -m pip install toml setuptools-scm --upgrade"
-  - "py -3.6 travis\\setversion.py"
+  - "py -3.6 -m pip install setuptools-scm --upgrade"
+  - "py -3.6 -c 'import setuptools_scm; print(setuptools_scm.get_version())' > _version.txt"
+  - "set /p VERSION=<_version.txt"
+  - "poetry version %VERSION%"
   - "SET PATH=C:\\Python36-x64\\;C:\\Python36-x64\\Scripts;%PATH%"
 
 build_script:
