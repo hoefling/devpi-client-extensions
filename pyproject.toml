@@ -34,20 +34,14 @@ devpi-client = '>=3.0.0'
 keyring = { version = '*', optional = true }
 
 [tool.poetry.extras]
-keyring = ['keyring', 'jeepney']
+keyring = ['keyring']
 
 [tool.poetry.dev-dependencies]
-black = { version = '>=19.3b0', allow-prereleases = true, python = '^3.6' }
-flake8 = '^3.7'
 pytest = '^4.0'
 pytest-cov = '^2.7'
 pytest-mock = '^1.10'
 readme-renderer = '^24.0'
-unify = '^0.4.0'
-tox = '^3.9'
-toml = '^0.10.0'
 mypy = { version = '^0.761', markers = 'implementation_name == "cpython"' }
-setuptools-scm = "^3.5.0"
 
 [tool.black]
 skip-string-normalization = true
