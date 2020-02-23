@@ -10,7 +10,7 @@ from command line will be used.
 
 import configparser
 import os
-from typing import Optional, Text, TextIO, Tuple
+from typing import Optional, TextIO, Tuple
 
 import devpi.main
 
@@ -18,7 +18,7 @@ try:
     from keyring import get_password
 except ImportError:
 
-    def get_password(service_name: Text, username: Text) -> Optional[Text]:
+    def get_password(service_name: str, username: str) -> Optional[str]:
         return None
 
 
@@ -30,7 +30,7 @@ _section_keys = (_key_repo, _key_username, _key_password)
 
 class PypircPlugin:
     @devpi.main.hookimpl(tryfirst=True)
-    def devpiclient_get_password(self, url: Text, username: Text) -> Optional[Text]:
+    def devpiclient_get_password(self, url: str, username: str) -> Optional[str]:
         """See :py:func:`devpi.hookspecs.devpiclient_get_password`"""
         pypirc = os.path.join(os.path.expanduser('~'), '.pypirc')
         try:
@@ -44,7 +44,7 @@ class PypircPlugin:
         return password
 
 
-def _find_password(fp: TextIO, url: Text, username: Text) -> Optional[Text]:
+def _find_password(fp: TextIO, url: str, username: str) -> Optional[str]:
     """Parses config from file-like object and searches for a password."""
     parser = configparser.ConfigParser()
     parser.read_file(fp)
@@ -63,7 +63,7 @@ def _find_password(fp: TextIO, url: Text, username: Text) -> Optional[Text]:
 
 class KeyringPlugin:
     @devpi.main.hookimpl(tryfirst=True)
-    def devpiclient_get_password(self, url: Text, username: Text) -> Optional[Text]:
+    def devpiclient_get_password(self, url: str, username: str) -> Optional[str]:
         password = get_password(url, username)
         if password:
             print('Using {} credentials from keyring'.format(username))

@@ -1,0 +1,3 @@
+from typing import Optional
+
+def get_password(service_name: str, username: str) -> Optional[str]: ...
