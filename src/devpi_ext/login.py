@@ -11,7 +11,7 @@ with entering password from command line will be used.
 
 import configparser
 from pathlib import Path
-from typing import Iterable, Optional, Tuple
+from typing import Iterable, Optional
 
 import devpi.main
 
@@ -27,7 +27,7 @@ except ImportError:
 _key_repo = 'repository'
 _key_username = 'username'
 _key_password = 'password'  # nosec
-_section_keys: Tuple[str, str, str] = (_key_repo, _key_username, _key_password)
+_section_keys = (_key_repo, _key_username, _key_password)
 
 
 class PypircPlugin:
