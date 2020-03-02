@@ -1,7 +1,5 @@
-try:
-    import builtins
-except ImportError:
-    import __builtin__ as builtins
+import builtins
+
 import pytest
 
 

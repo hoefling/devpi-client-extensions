@@ -1,7 +1,8 @@
+import pathlib
+
 import toml
 
 import pytest
-from _pytest import pathlib
 from devpi.main import get_pluginmanager
 from devpi_ext import login
 
