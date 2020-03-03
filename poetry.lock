@@ -612,7 +612,7 @@ testing = ["pathlib2", "unittest2", "jaraco.itertools", "func-timeout"]
 keyring = ["keyring"]
 
 [metadata]
-content-hash = "af2c7a8737f7b8fcb8d6a6b07af7be314abce24b98eab4ba923f63fd42d6c147"
+content-hash = "341ab28f1aab4c4961c2d8aae6027c62d08f0b92b5b3eeb77d0c48c884b8320d"
 python-versions = '^3.5'
 
 [metadata.files]
