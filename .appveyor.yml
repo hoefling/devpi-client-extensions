@@ -4,51 +4,45 @@ cache:
 
 environment:
   matrix:
-    - TOXENV: "py35"
-      TOX_APPVEYOR_X64: 1
-    - TOXENV: "py35"
-      TOX_APPVEYOR_X64: 0
-    - TOXENV: "py36"
-      TOX_APPVEYOR_X64: 1
-    - TOXENV: "py36"
-      TOX_APPVEYOR_X64: 0
-    - TOXENV: "py37"
-      TOX_APPVEYOR_X64: 1
-    - TOXENV: "py37"
-      TOX_APPVEYOR_X64: 0
-    - TOXENV: "py38"
-      TOX_APPVEYOR_X64: 1
-    - TOXENV: "py38"
-      TOX_APPVEYOR_X64: 0
     - TOXENV: "pypy3"
+    - TOXENV: "py35"
+      TOX_APPVEYOR_X64: 1
+    - TOXENV: "py35"
+      TOX_APPVEYOR_X64: 0
+    - TOXENV: "py36"
+      TOX_APPVEYOR_X64: 1
+    - TOXENV: "py36"
+      TOX_APPVEYOR_X64: 0
+    - TOXENV: "py37"
+      TOX_APPVEYOR_X64: 1
+    - TOXENV: "py37"
+      TOX_APPVEYOR_X64: 0
+    - TOXENV: "py38"
+      TOX_APPVEYOR_X64: 1
+    - TOXENV: "py38"
+      TOX_APPVEYOR_X64: 0
 
 matrix:
   allow_failures:
     - TOXENV: "pypy3"  # pytest + pypy3 + windows raises; maybe open an issue?
 
 install:
+  - ps: $env:Path = "C:\Python36-x64\;C:\Python36-x64\Scripts;$env:Path"
   - ps: |
-      if ($env:TOXENV -eq "pypy") {
-          (New-Object Net.WebClient).DownloadFile('https://bitbucket.org/pypy/pypy/downloads/pypy2.7-v7.1.1-win32.zip', "$env:appveyor_build_folder\pypy2.7-v7.1.1-win32.zip")
-          7z x pypy2.7-v7.1.1-win32.zip -oc:\
-          $env:path = "c:\pypy2.7-v7.1.1-win32;$env:path"
-      } elseif ($env:TOXENV -eq "pypy3") {
-          (New-Object Net.WebClient).DownloadFile('https://bitbucket.org/pypy/pypy/downloads/pypy3.6-v7.1.1-win32.zip', "$env:appveyor_build_folder\pypy3.6-v7.1.1-win32.zip")
-          7z x pypy3.6-v7.1.1-win32.zip -oc:\
-          $env:path = "c:\pypy3.6-v7.1.1-win32;$env:path"
+      if ($env:TOXENV -eq "pypy3") {
+          (New-Object Net.WebClient).DownloadFile('https://bitbucket.org/pypy/pypy/downloads/pypy3.6-v7.3.0-win32.zip', "$env:appveyor_build_folder\pypy3.6-v7.3.0-win32.zip")
+          7z x pypy3.6-v7.3.0-win32.zip -oc:\
+          $env:path = "c:\pypy3.6-v7.3.0-win32;$env:path"
       }
-  - "py -3.6 -m pip install poetry tox tox-appveyor --upgrade"
-  - "py -3.6 -m pip install setuptools-scm --upgrade"
-  - "py -3.6 -c 'import setuptools_scm; print(setuptools_scm.get_version())' > _version.txt"
-  - "set /p VERSION=<_version.txt"
-  - "poetry version %VERSION%"
-  - "SET PATH=C:\\Python36-x64\\;C:\\Python36-x64\\Scripts;%PATH%"
+  - ps: py -3.6 -m pip install pip poetry setuptools-scm tox tox-appveyor --upgrade
+  - ps: $VERSION = & py -3.6 -c "import setuptools_scm; print(setuptools_scm.get_version())"
+  - ps: poetry version $VERSION
 
 build_script:
-  - "poetry build -vvv --no-interaction --format=wheel"
+  - ps: poetry build -vvv --no-interaction --format=wheel
 
 test_script:
-  - "tox -vv"
+  - ps: tox -vv
 
 artifacts:
   - path: dist\*.whl
