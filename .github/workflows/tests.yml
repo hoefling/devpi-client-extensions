@@ -1,0 +1,27 @@
+name: tests
+
+on: [push]
+
+jobs:
+  tests:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: [3.6, 3.7, 3.8, pypy3]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install tox
+        run: |
+          pip install tox
+      - name: Calculate tox env name
+        shell: bash
+        run: |
+          echo ::set-env name=TOXENV::$(python -c "import sys; v=sys.version_info; print('py', v.major, v.minor, sep='')")
+      - name: Run tests
+        run: |
+          tox
