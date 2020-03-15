@@ -27,15 +27,18 @@ matrix:
     - TOXENV: "pypy3"  # pytest + pypy3 + windows raises; maybe open an issue?
 
 install:
-  - ps: $env:Path = "C:\Python36-x64\;C:\Python36-x64\Scripts;$env:Path"
   - ps: |
       if ($env:TOXENV -eq "pypy3") {
           (New-Object Net.WebClient).DownloadFile('https://bitbucket.org/pypy/pypy/downloads/pypy3.6-v7.3.0-win32.zip', "$env:appveyor_build_folder\pypy3.6-v7.3.0-win32.zip")
           7z x pypy3.6-v7.3.0-win32.zip -oc:\
-          $env:path = "c:\pypy3.6-v7.3.0-win32;$env:path"
+          $env:path = "c:\pypy3.6-v7.3.0-win32;C:\pypy3.6-v7.3.0-win32\bin;$env:path"
+          pypy3 -m ensurepip
+          New-Alias python c:\pypy3.6-v7.3.0-win32\pypy3.exe
+      } else {
+          $env:Path = "C:\Python36-x64\;C:\Python36-x64\Scripts;$env:Path"
       }
-  - ps: py -3.6 -m pip install pip poetry setuptools-scm tox tox-appveyor --upgrade
-  - ps: $VERSION = & py -3.6 -c "import setuptools_scm; print(setuptools_scm.get_version())"
+  - ps: python -m pip install pip poetry setuptools-scm tox tox-appveyor --upgrade
+  - ps: $VERSION = & python -c "import setuptools_scm; print(setuptools_scm.get_version())"
   - ps: poetry version $VERSION
 
 build_script:
