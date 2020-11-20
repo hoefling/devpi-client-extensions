@@ -50,9 +50,7 @@ class Distribution:
     def from_name(cls, name: str) -> Distribution: ...
     @overload
     @classmethod
-    def discover(
-        cls, *, context: DistributionFinder.Context
-    ) -> Iterable[Distribution]: ...
+    def discover(cls, *, context: DistributionFinder.Context) -> Iterable[Distribution]: ...
     @overload
     @classmethod
     def discover(
@@ -61,7 +59,7 @@ class Distribution:
         context: None = ...,
         name: Optional[str] = ...,
         path: List[str] = ...,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Iterable[Distribution]: ...
     @staticmethod
     def at(path: Union[str, os.PathLike[str]]) -> PathDistribution: ...
@@ -79,9 +77,7 @@ class Distribution:
 class DistributionFinder(MetaPathFinder):
     class Context:
         name: Optional[str]
-        def __init__(
-            self, *, name: Optional[str] = ..., path: List[str] = ..., **kwargs: Any
-        ) -> None: ...
+        def __init__(self, *, name: Optional[str] = ..., path: List[str] = ..., **kwargs: Any) -> None: ...
         @property
         def path(self) -> List[str]: ...
         @property
@@ -91,9 +87,7 @@ class DistributionFinder(MetaPathFinder):
 
 class MetadataPathFinder(DistributionFinder):
     @classmethod
-    def find_distributions(
-        cls, context: DistributionFinder.Context = ...
-    ) -> Iterable[PathDistribution]: ...
+    def find_distributions(cls, context: DistributionFinder.Context = ...) -> Iterable[PathDistribution]: ...
 
 class PathDistribution(Distribution):
     def __init__(self, path: Path) -> None: ...
@@ -109,7 +103,7 @@ def distributions(
     context: None = ...,
     name: Optional[str] = ...,
     path: List[str] = ...,
-    **kwargs: Any
+    **kwargs: Any,
 ) -> Iterable[Distribution]: ...
 def metadata(distribution_name: str) -> Message: ...
 def version(distribution_name: str) -> str: ...

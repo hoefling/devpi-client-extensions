@@ -7,6 +7,12 @@ repos:
     -   id: black
         types: []
         files: ^.*.pyi?$  # format .py and .pyi files
+        exclude: ^_typeshed/
+    -   id: black
+        name: black (typeshed)
+        types: []
+        files: ^_typeshed/.*.pyi?$  # format .py and .pyi files
+        args: [--config=_typeshed/pyproject.toml]
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.2.0
     hooks:
