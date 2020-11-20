@@ -54,29 +54,10 @@ release = 'python release.py'
 
 [tool.black]
 skip-string-normalization = true
-line-length = 88
-target_version = ['py38']
-include = '\.pyi?$'
-exclude = '''
-
-(
-  /(
-      \.eggs         # exclude a few common directories in the
-    | \.git          # root of the project
-    | \.mypy_cache
-    | \.tox
-    | build
-    | dist
-  )/
-)
-'''
+target_version = ['py37']
 
 [tool.isort]
-force_alphabetical_sort_within_sections = true
-line_length = 88
-known_first_party = 'devpi_ext'
-multi_line_output = 3
-include_trailing_comma = true
+profile = "black"
 
 [build-system]
 requires = ['poetry-core>=1.0']
