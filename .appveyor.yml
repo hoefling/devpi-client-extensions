@@ -29,11 +29,11 @@ matrix:
 install:
   - ps: |
       if ($env:TOXENV -eq "pypy3") {
-          (New-Object Net.WebClient).DownloadFile('https://bitbucket.org/pypy/pypy/downloads/pypy3.6-v7.3.0-win32.zip', "$env:appveyor_build_folder\pypy3.6-v7.3.0-win32.zip")
-          7z x pypy3.6-v7.3.0-win32.zip -oc:\
-          $env:path = "c:\pypy3.6-v7.3.0-win32;C:\pypy3.6-v7.3.0-win32\bin;$env:path"
+          (New-Object Net.WebClient).DownloadFile('https://downloads.python.org/pypy/pypy3.7-v7.3.2-win32.zip', "$env:appveyor_build_folder\pypy3.7-v7.3.2-win32.zip")
+          7z x pypy3.7-v7.3.2-win32.zip -oc:\
+          $env:path = "c:\pypy3.7-v7.3.2-win32;C:\pypy3.7-v7.3.2-win32\bin;$env:path"
           pypy3 -m ensurepip
-          New-Alias python c:\pypy3.6-v7.3.0-win32\pypy3.exe
+          New-Alias python c:\pypy3.7-v7.3.2-win32\pypy3.exe
       } else {
           $env:Path = "C:\Python36-x64\;C:\Python36-x64\Scripts;$env:Path"
       }
