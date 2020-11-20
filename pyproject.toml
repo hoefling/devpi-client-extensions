@@ -14,11 +14,11 @@ classifiers = [
     'Intended Audience :: System Administrators',
     'License :: OSI Approved :: MIT License',
     'Programming Language :: Python :: Implementation',
-    'Programming Language :: Python :: 2.7',
-    'Programming Language :: Python :: 3.4',
     'Programming Language :: Python :: 3.5',
     'Programming Language :: Python :: 3.6',
-    'Programming Language :: Python :: 3.7'
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
 ]
 packages = [
     { include = 'devpi_ext', from = 'src' },
@@ -32,21 +32,30 @@ packages = [
 python = '^3.5'
 devpi-client = '>=3.0.0'
 keyring = { version = '*', optional = true }
-importlib-metadata = {version = "^1.5.0", python = "<3.8"}
+importlib-metadata = { version = '^1.5.0', python = '<3.8' }
 
 [tool.poetry.extras]
 keyring = ['keyring']
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.0"
-pytest-cov = "^2.8.0"
-readme-renderer = "^24.0"
-mypy = { version = '^0.761', markers = 'implementation_name == "cpython"' }
+pytest = '^6.1'
+pytest-cov = '^2.10.0'
+readme-renderer = '^28.0'
+mypy = { version = '^0.790', markers = 'implementation_name == "cpython"' }
+taskipy = { version = '^1.4.0', python = '>=3.6' }
+pre-commit = { version = '^2.8.2', python = '>=3.6.1' }
+
+[tool.taskipy.tasks]
+setup = 'poetry install && pre-commit install'
+test = 'pytest --cov=devpi_ext --cov-branch --cov-report=term-missing --cov-fail-under=100 --doctest-modules'
+lint = 'pre-commit run --all-files'
+scm = 'python -c "import setuptools_scm; print(setuptools_scm.get_version())"'
+release = 'python release.py'
 
 [tool.black]
 skip-string-normalization = true
 line-length = 88
-target_version = ['py34', 'py35', 'py36', 'py37', 'py38']
+target_version = ['py38']
 include = '\.pyi?$'
 exclude = '''
 
@@ -64,12 +73,11 @@ exclude = '''
 
 [tool.isort]
 force_alphabetical_sort_within_sections = true
-recursive = true
 line_length = 88
 known_first_party = 'devpi_ext'
 multi_line_output = 3
 include_trailing_comma = true
 
 [build-system]
-requires = ['poetry>=1.0']
-build-backend = 'poetry.masonry.api'
+requires = ['poetry-core>=1.0']
+build-backend = 'poetry.core.masonry.api'

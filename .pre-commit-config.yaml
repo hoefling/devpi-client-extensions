@@ -2,13 +2,13 @@
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
 -   repo: https://github.com/ambv/black
-    rev: 19.10b0
+    rev: 20.8b1
     hooks:
     -   id: black
         types: []
         files: ^.*.pyi?$  # format .py and .pyi files
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.4.0
+    rev: v3.2.0
     hooks:
     -   id: no-commit-to-branch
     -   id: trailing-whitespace
@@ -17,16 +17,18 @@ repos:
     -   id: check-added-large-files
     -   id: check-ast
     -   id: check-merge-conflict
-    -   id: check-docstring-first
     -   id: check-json
     -   id: detect-private-key
     -   id: mixed-line-ending
     -   id: pretty-format-json
         args: [--autofix]
+-   repo: https://gitlab.com/pycqa/flake8
+    rev: 3.8.4
+    hooks:
     -   id: flake8
-        additional_dependencies: [flake8-docstrings, flake8-bugbear, flake8-logging-format, flake8-builtins, flake8-eradicate, flake8-fixme, pep8-naming, flake8-annotations-complexity, flake8-pep3101]
+        additional_dependencies: [flake8-docstrings, flake8-bugbear, flake8-logging-format, flake8-builtins, flake8-eradicate, flake8-fixme, pep8-naming, flake8-pep3101, "git+https://github.com/best-doctor/flake8-annotations-complexity.git@3863739c34748db8fb5a740d903b8e243dfddb20"]
 -   repo: https://github.com/timothycrosley/isort
-    rev: 4.3.21
+    rev: 5.6.4
     hooks:
     -   id: isort
         additional_dependencies: ["isort[pyproject]"]
@@ -39,15 +41,16 @@ repos:
     hooks:
     -   id: mypy
         name: mypy
-        entry: mypy
+        entry: "poetry run mypy"
         language: system
         exclude: tests/.*.py
         types: [python]
+        pass_filenames: false
 -   repo: https://github.com/PyCQA/doc8
-    rev: 0.8.1rc2
+    rev: 0.9.0a1
     hooks:
     -   id: doc8
 -   repo: https://github.com/pre-commit/pygrep-hooks
-    rev: v1.4.4
+    rev: v1.6.0
     hooks:
     -   id: rst-backticks
