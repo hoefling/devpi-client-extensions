@@ -46,19 +46,15 @@ Example with storing the password in keyring:
 Stats
 -----
 
-|pypi| |github| |appveyor| |coverage| |requirements| |black|
+|pypi| |build| |coverage| |requirements| |black|
 
 .. |pypi| image:: https://img.shields.io/pypi/v/devpi-client-extensions.svg?logo=python&logoColor=white
    :target: https://pypi.python.org/pypi/devpi-client-extensions
    :alt: Package on PyPI
 
-.. |appveyor| image:: https://img.shields.io/appveyor/ci/hoefling/devpi-client-extensions/master.svg?logo=appveyor&logoColor=white&label=AppVeyor
-   :target: https://ci.appveyor.com/project/hoefling/devpi-client-extensions
-   :alt: Windows build status
-
-.. |github| image:: https://github.com/hoefling/devpi-client-extensions/workflows/CI/badge.svg
+.. |build| image:: https://github.com/hoefling/devpi-client-extensions/workflows/CI/badge.svg
    :target: https://github.com/hoefling/devpi-client-extensions/actions?query=workflow%3A%22CI%22
-   :alt: Github Actions build status
+   :alt: Build status on Github Actions
 
 .. |coverage| image:: https://codecov.io/gh/hoefling/devpi-client-extensions/branch/master/graph/badge.svg
    :target: https://codecov.io/gh/hoefling/devpi-client-extensions
