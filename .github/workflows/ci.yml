@@ -38,9 +38,6 @@ jobs:
       matrix:
         os: [ubuntu, macos, windows]
         python: [3.6, 3.7, 3.8, 3.9, pypy3]
-    defaults:
-      run:
-        shell: bash
     steps:
       - uses: actions/checkout@v2
       - name: Setup Python ${{ matrix.python }}
@@ -51,10 +48,11 @@ jobs:
         id: full-python-version
         run: echo ::set-output name=version::$(python -c "import sys; print(*sys.version_info, sep='-')")
       - name: Install poetry
-        uses: snok/install-poetry@v1.1.1
-        with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
+        run: |
+          python -m ensurepip
+          python -m pip install --upgrade pip
+          python -m pip install poetry
+          python -m poetry config virtualenvs.in-project true
       - name: Set up cache
         uses: actions/cache@v2
         id: cache
@@ -68,5 +66,6 @@ jobs:
       - name: Run test task
         run: poetry run task test
       - name: Upload coverage report to codecov
+        shell: bash
         run: |
           bash <(curl -s https://codecov.io/bash) -f coverage.xml
