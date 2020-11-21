@@ -1,6 +1,6 @@
 [tool.poetry]
 name = 'devpi-client-extensions'
-version = '0.2.1'
+version = '0.3.1.dev0'
 description = 'devpi client extensions'
 authors = ['Oleg Höfling <oleg.hoefling@gmail.com>']
 license = 'MIT'
@@ -14,11 +14,11 @@ classifiers = [
     'Intended Audience :: System Administrators',
     'License :: OSI Approved :: MIT License',
     'Programming Language :: Python :: Implementation',
-    'Programming Language :: Python :: 2.7',
-    'Programming Language :: Python :: 3.4',
     'Programming Language :: Python :: 3.5',
     'Programming Language :: Python :: 3.6',
-    'Programming Language :: Python :: 3.7'
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
 ]
 packages = [
     { include = 'devpi_ext', from = 'src' },
@@ -29,54 +29,37 @@ packages = [
 'devpi-client-ext-login-keyring' = 'devpi_ext.login:_keyring_plugin [keyring]'
 
 [tool.poetry.dependencies]
-python = '~2.7 || ^3.4'
+python = '^3.5'
 devpi-client = '>=3.0.0'
 keyring = { version = '*', optional = true }
-
-# workaround for https://github.com/sdispater/poetry/issues/1121
-jeepney = { version = '*', optional = true, python = '>=3.5' }
+importlib-metadata = { version = '^1.5.0', python = '<3.8' }
 
 [tool.poetry.extras]
-keyring = ['keyring', 'jeepney']
+keyring = ['keyring']
 
 [tool.poetry.dev-dependencies]
-black = { version = '>=19.3b0', allows-prereleases = true, python = '^3.6' }
-flake8 = '^3.7'
-pytest = '^4.0'
-pytest-cov = '^2.7'
-pytest-mock = '^1.10'
-readme-renderer = '^24.0'
-unify = '^0.4.0'
-tox = '^3.9'
-toml = "^0.10.0"
+pytest = '^6.1'
+pytest-cov = '^2.10.0'
+readme-renderer = '^28.0'
+mypy = { version = '^0.790', markers = 'implementation_name == "cpython"' }
+taskipy = { version = '^1.4.0', python = '>=3.6' }
+pre-commit = { version = '^2.8.2', python = '>=3.6.1' }
+setuptools-scm = '^4.1.2'
+
+[tool.taskipy.tasks]
+setup = 'poetry install && pre-commit install'
+test = 'pytest --cov=devpi_ext --cov-branch --cov-report=term-missing --cov-fail-under=100 --doctest-modules'
+lint = 'pre-commit run --all-files'
+scm = 'python -c "import setuptools_scm; print(setuptools_scm.get_version())"'
+release = 'python release.py'
 
 [tool.black]
 skip-string-normalization = true
-line-length = 88
-target_version = ['py34', 'py35', 'py36', 'py37', 'py38']
-include = '\.pyi?$'
-exclude = '''
-
-(
-  /(
-      \.eggs         # exclude a few common directories in the
-    | \.git          # root of the project
-    | \.mypy_cache
-    | \.tox
-    | build
-    | dist
-  )/
-)
-'''
+target_version = ['py37']
 
 [tool.isort]
-force_alphabetical_sort_within_sections = true
-recursive = true
-line_length = 88
-known_first_party = 'devpi_ext'
-multi_line_output = 3
-include_trailing_comma = true
+profile = "black"
 
 [build-system]
-requires = ['poetry>=0.12']
-build-backend = 'poetry.masonry.api'
+requires = ['poetry-core>=1.0']
+build-backend = 'poetry.core.masonry.api'

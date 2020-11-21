@@ -1,7 +1,5 @@
-try:
-    import builtins
-except ImportError:
-    import __builtin__ as builtins
+import builtins
+
 import pytest
 
 
@@ -42,3 +40,12 @@ def test_password_is_found_when_keyring_stores_credentials(monkeypatch):
     assert (
         login.KeyringPlugin().devpiclient_get_password('http://fizz', 'buzz') == 'fuzz'
     )
+
+
+def test_printed_message_when_password_is_found_in_keyring(capsys, monkeypatch):
+    monkeypatch.setattr('keyring.get_password', lambda service, user: 'fuzz')
+    from devpi_ext import login
+
+    login.KeyringPlugin().devpiclient_get_password('http://fizz', 'buzz') == 'fuzz'
+    captured = capsys.readouterr()
+    assert captured.out == 'Using buzz credentials from keyring\n'

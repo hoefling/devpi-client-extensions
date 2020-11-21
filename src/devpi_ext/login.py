@@ -1,46 +1,46 @@
 # pyre-strict
 
 """
-Defines custom hook for password search. This tries to get credentials
-from .pypirc file. Will return nothing if the file is not present
-or not well-formed. In that case, the standard hook with entering password
-from command line will be used.
+Defines custom hook for password search.
+
+This tries to get credentials from :file:`.pypirc` file. Will return nothing
+if the file is not present or not well-formed. In that case, the standard hook
+with entering password from command line will be used.
 """
 
 
-try:
-    import configparser
-except ImportError:  # pragma: no cover
-    # python2 compat
-    import ConfigParser as configparser
-import os
+import configparser
+from pathlib import Path
+from typing import Iterable, Optional
+
+import devpi.main
 
 try:
     from keyring import get_password
 except ImportError:
 
-    def get_password(service_name, username):
+    def get_password(service_name: str, username: str) -> Optional[str]:
+        """Keyring dummy replacement if ``keyring`` is not installed."""
         return None
-
-
-import devpi.main
 
 
 _key_repo = 'repository'
 _key_username = 'username'
-_key_password = 'password'
+_key_password = 'password'  # nosec
 _section_keys = (_key_repo, _key_username, _key_password)
 
 
 class PypircPlugin:
+    """Plugin that implements reading the password from :file:`.pypirc` file."""
+
     @devpi.main.hookimpl(tryfirst=True)
-    def devpiclient_get_password(self, url, username):
-        """See :py:func:`devpi.hookspecs.devpiclient_get_password`"""
-        pypirc = os.path.join(os.path.expanduser('~'), '.pypirc')
+    def devpiclient_get_password(self, url: str, username: str) -> Optional[str]:
+        """.. seealso:: :py:func:`devpi.hookspecs.devpiclient_get_password`."""
+        pypirc = Path.home() / '.pypirc'
         try:
-            with open(pypirc) as fp:
+            with pypirc.open() as fp:
                 password = _find_password(fp, url, username)
-        except (OSError, IOError):
+        except OSError:
             return None
 
         if password:
@@ -48,8 +48,8 @@ class PypircPlugin:
         return password
 
 
-def _find_password(fp, url, username):
-    """Parses config from file-like object and searches for a password."""
+def _find_password(fp: Iterable[str], url: str, username: str) -> Optional[str]:
+    """Parse config from file-like object and search for a password."""
     parser = configparser.ConfigParser()
     parser.read_file(fp)
     sections = (dict(parser.items(name)) for name in parser.sections())
@@ -66,8 +66,11 @@ def _find_password(fp, url, username):
 
 
 class KeyringPlugin:
+    """Plugin that implements reading the password from ``keyring`` backend."""
+
     @devpi.main.hookimpl(tryfirst=True)
-    def devpiclient_get_password(self, url, username):
+    def devpiclient_get_password(self, url: str, username: str) -> Optional[str]:
+        """.. seealso:: :py:func:`devpi.hookspecs.devpiclient_get_password`."""
         password = get_password(url, username)
         if password:
             print('Using {} credentials from keyring'.format(username))

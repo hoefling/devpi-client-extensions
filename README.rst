@@ -1,10 +1,10 @@
 devpi-client-extensions
 =======================
 
-Some useful stuff around `devpi client`_. Although this package is proudly named *extensions*,
-currently there is only one thing implemented ready to be used: a hook that uses passwords from
-``.pypirc`` or `keyring`_ on login to devpi server so you don't have to enter your password
-if you store it for upload anyway.
+Some useful stuff around `devpi client`_. Although this package is proudly named
+*extensions*, currently there is only one thing implemented ready to be used:
+a hook that uses passwords from ``.pypirc`` or `keyring`_ on login to devpi server
+so you don't have to enter your password if you store it for upload anyway.
 
 Install
 -------
@@ -27,7 +27,8 @@ Just use the ``devpi login`` command as usual:
 Keyring Support
 ---------------
 
-Since version 0.3, reading credentials using `keyring`_ is supported. Install the package with `keyring` extras:
+Since version 0.3, reading credentials using `keyring`_ is supported.
+Install the package with ``keyring`` extras:
 
 .. code-block:: sh
 
@@ -45,34 +46,26 @@ Example with storing the password in keyring:
 Stats
 -----
 
-|pypi| |build| |appveyor| |coverage| |landscape| |requirements| |black|
+|pypi| |build| |coverage| |requirements| |black|
 
-.. |pypi| image:: https://badge.fury.io/py/devpi-client-extensions.svg
-   :target: https://badge.fury.io/py/devpi-client-extensions
+.. |pypi| image:: https://img.shields.io/pypi/v/devpi-client-extensions.svg?logo=python&logoColor=white
+   :target: https://pypi.python.org/pypi/devpi-client-extensions
    :alt: Package on PyPI
 
-.. |build| image:: https://travis-ci.org/hoefling/devpi-client-extensions.svg?branch=master
-   :target: https://travis-ci.org/hoefling/devpi-client-extensions
-   :alt: Build status
-
-.. |appveyor| image:: https://ci.appveyor.com/api/projects/status/github/hoefling/devpi-client-extensions?branch=master&svg=true
-   :target: https://ci.appveyor.com/project/hoefling/devpi-client-extensions
-   :alt: Windows build status
+.. |build| image:: https://github.com/hoefling/devpi-client-extensions/workflows/CI/badge.svg
+   :target: https://github.com/hoefling/devpi-client-extensions/actions?query=workflow%3A%22CI%22
+   :alt: Build status on Github Actions
 
 .. |coverage| image:: https://codecov.io/gh/hoefling/devpi-client-extensions/branch/master/graph/badge.svg
    :target: https://codecov.io/gh/hoefling/devpi-client-extensions
    :alt: Coverage status
 
-.. |landscape| image:: https://landscape.io/github/hoefling/devpi-client-extensions/master/landscape.svg?style=flat
-   :target: https://landscape.io/github/hoefling/devpi-client-extensions/master
-   :alt: Code Health
-
 .. |requirements| image:: https://requires.io/github/hoefling/devpi-client-extensions/requirements.svg?branch=master
-     :target: https://requires.io/github/hoefling/devpi-client-extensions/requirements/?branch=master
-     :alt: Requirements status
+   :target: https://requires.io/github/hoefling/devpi-client-extensions/requirements/?branch=master
+   :alt: Requirements status
 
 .. |black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
-    :target: https://github.com/ambv/black
+   :target: https://github.com/ambv/black
 
 .. _devpi client: https://pypi.org/project/devpi-client/
 

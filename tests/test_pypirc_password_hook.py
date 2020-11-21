@@ -1,13 +1,9 @@
+import builtins
+from io import StringIO  # python3
+
 import pytest
+
 from devpi_ext import login
-
-try:
-    from StringIO import StringIO  # python2
-    import __builtin__ as builtins
-except ImportError:
-    from io import StringIO  # python3
-    import builtins
-
 
 section = ['[foo]', 'repository: http://foo', 'username: bar', 'password: baz']
 
@@ -39,7 +35,7 @@ def test_password_is_none_when_password_missing():
 
 
 def test_password_is_none_when_pypirc_missing(monkeypatch, tmp_path):
-    monkeypatch.setattr('os.path.expanduser', lambda *args: str(tmp_path))
+    monkeypatch.setattr('pathlib.Path.home', lambda: tmp_path)
     assert (tmp_path / '.pypirc').is_file() is False
     assert login.PypircPlugin().devpiclient_get_password('http://fizz', 'fizz') is None
 
@@ -61,7 +57,14 @@ def test_password_is_none_when_pypirc_misses_credentials():
 
 
 @pytest.mark.usefixtures('pypirc')
-def test_password_is_found_when_pypirc_present_and_readable(mocker):
+def test_password_is_found_when_pypirc_present_and_readable():
     assert (
         login.PypircPlugin().devpiclient_get_password('http://fizz', 'fizz') == 'fizz'
     )
+
+
+@pytest.mark.usefixtures('pypirc')
+def test_printed_message_when_password_is_found_in_pypirc(capsys):
+    login.PypircPlugin().devpiclient_get_password('http://fizz', 'fizz') == 'fizz'
+    captured = capsys.readouterr()
+    assert captured.out == 'Using fizz credentials from .pypirc\n'

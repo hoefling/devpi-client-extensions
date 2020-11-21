@@ -1,7 +1,5 @@
-try:
-    from io import StringIO  # python3
-except ImportError:
-    from cStringIO import StringIO  # python2
+from io import StringIO  # python3
+
 from readme_renderer.rst import render
 
 

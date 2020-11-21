@@ -1,27 +1,33 @@
+import sys
+
 import pytest
-from pkg_resources import DistributionNotFound
+
+if sys.version_info >= (3, 8):  # pragma: no cover
+    from importlib import metadata as importlib_metadata
+else:  # pragma: no cover
+    import importlib_metadata
 
 
-class DistMock:
-    version = '1.2.3.dev123'
+fake_version = '1.2.3.dev123'
 
 
 @pytest.mark.usefixtures('unload_imports')
 def test_version_when_package_installed(monkeypatch):
     # happy testing
-    monkeypatch.setattr('pkg_resources.get_distribution', lambda s: DistMock())
+    monkeypatch.setattr(
+        '{}.version'.format(importlib_metadata.__name__), lambda s: fake_version
+    )
     from devpi_ext import __version__
 
-    assert __version__ == DistMock.version
+    assert __version__ == fake_version
 
 
 @pytest.mark.usefixtures('unload_imports')
-@pytest.mark.parametrize('error_cls', (DistributionNotFound, ImportError))
-def test_version_when_reading_raises(monkeypatch, error_cls):
+def test_version_when_reading_raises(monkeypatch):
     def raise_(*args, **kwargs):
-        raise error_cls()
+        raise importlib_metadata.PackageNotFoundError()
 
-    monkeypatch.setattr('pkg_resources.get_distribution', raise_)
+    monkeypatch.setattr('{}.version'.format(importlib_metadata.__name__), raise_)
     from devpi_ext import __version__
 
     assert __version__ == 'UNKNOWN'

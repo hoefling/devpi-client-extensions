@@ -1,16 +1,21 @@
 # pyre-strict
 
+"""Provides version information read from package metadata."""
 
-__all__ = ['__version__']
+import sys
+
+if sys.version_info >= (3, 8):  # pragma: no cover
+    from importlib import metadata as importlib_metadata
+else:  # pragma: no cover
+    import importlib_metadata
 
 
-def _read_version():
-    try:  # reading the version from installation metadata
-        from pkg_resources import DistributionNotFound, get_distribution
-
-        return get_distribution('devpi-client-extensions').version
-    except (ImportError, DistributionNotFound):
+def _read_version() -> str:
+    try:
+        return importlib_metadata.version('devpi-client-extensions')
+    except importlib_metadata.PackageNotFoundError:
         return 'UNKNOWN'
 
 
 __version__ = _read_version()
+__all__ = ['__version__']

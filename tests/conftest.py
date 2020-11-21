@@ -1,12 +1,7 @@
+import configparser
 import sys
+
 import pytest
-
-
-try:
-    import configparser
-except ImportError:  # pragma: no cover
-    # python2 compat
-    import ConfigParser as configparser
 
 
 @pytest.fixture
@@ -35,5 +30,5 @@ def pypirc(monkeypatch, tmp_path):
     with pypirc.open('w', encoding='utf-8') as fp:
         parser.write(fp)
     with monkeypatch.context() as m:
-        m.setattr('os.path.expanduser', lambda *args: str(tmp_path))
+        m.setattr('pathlib.Path.home', lambda: tmp_path)
         yield
