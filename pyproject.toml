@@ -40,10 +40,10 @@ keyring = ['keyring']
 pytest = '^6.2'
 pytest-cov = '^2.12.0'
 readme-renderer = '^29.0'
-mypy = { version = '^0.812', markers = 'implementation_name == "cpython"' }
+mypy = { version = '^0.910', markers = 'implementation_name == "cpython"' }
 taskipy = '^1.8.0'
-pre-commit = { version = '^2.9.0', python = '>=3.6.1' }
-setuptools-scm = '^4.1.2'
+pre-commit = { version = '^2.14.0', python = '>=3.6.1' }
+setuptools-scm = '^6.0.0'
 
 [tool.taskipy.tasks]
 setup = 'poetry install && pre-commit install'
@@ -54,10 +54,32 @@ release = 'python release.py'
 
 [tool.black]
 skip-string-normalization = true
-target_version = ['py37']
+target_version = ['py38']
 
 [tool.isort]
-profile = "black"
+profile = 'black'
+
+[tool.mypy]
+files = ['src']
+mypy_path = ['_typeshed/']
+ignore_missing_imports = false
+warn_unused_configs = true
+disallow_subclassing_any = true
+disallow_any_generics = true
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+disallow_any_unimported = true
+strict_optional = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_return_any = true
+warn_no_return = true
+no_implicit_reexport = true
+show_error_codes = true
 
 [build-system]
 requires = ['poetry-core>=1.0']
