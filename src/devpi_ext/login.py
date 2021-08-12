@@ -27,7 +27,7 @@ except ImportError:
 _key_repo = 'repository'
 _key_username = 'username'
 _key_password = 'password'  # nosec
-_section_keys = (_key_repo, _key_username, _key_password)
+_section_keys: tuple[str, str, str] = (_key_repo, _key_username, _key_password)
 
 
 class PypircPlugin:

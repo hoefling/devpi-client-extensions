@@ -51,6 +51,22 @@ repos:
         exclude: tests/.*.py
         types: [python]
         pass_filenames: false
+    -   id: pytype
+        name: pytype
+        entry: "poetry run pytype src/"
+        language: system
+        exclude: tests/.*.py
+        types: [python]
+        pass_filenames: false
+        require_serial: true
+    -   id: pyre
+        name: pyre
+        entry: "poetry run pyre"
+        language: system
+        exclude: tests/.*.py
+        types: [python]
+        pass_filenames: false
+        require_serial: true
 -   repo: https://github.com/PyCQA/doc8
     rev: 0.9.0a1
     hooks:

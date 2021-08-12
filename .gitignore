@@ -107,3 +107,6 @@ ENV/
 
 # direnv files
 .envrc
+
+# ignore pyre cache
+.pyre/

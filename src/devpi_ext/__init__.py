@@ -17,5 +17,5 @@ def _read_version() -> str:
         return 'UNKNOWN'
 
 
-__version__ = _read_version()
+__version__: str = _read_version()
 __all__ = ['__version__']
