@@ -902,7 +902,7 @@ keyring = ["keyring"]
 [metadata]
 lock-version = "1.1"
 python-versions = '^3.6'
-content-hash = "9dd46c903c29bf58436231f7d2f26c79f26839c684fa5afc5a0f4f617fba667f"
+content-hash = "2008edf89b02f7db7fde3e8d259696c2d09531f17c02b61119c55493e915e7fe"
 
 [metadata.files]
 appdirs = [
