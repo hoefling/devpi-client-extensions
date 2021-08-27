@@ -46,7 +46,7 @@ Example with storing the password in keyring:
 Stats
 -----
 
-|pypi| |build| |coverage| |requirements| |black|
+|pypi| |build| |coverage| |requirements| |black| |precommit|
 
 .. |pypi| image:: https://img.shields.io/pypi/v/devpi-client-extensions.svg?logo=python&logoColor=white
    :target: https://pypi.python.org/pypi/devpi-client-extensions
@@ -66,6 +66,10 @@ Stats
 
 .. |black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/ambv/black
+
+.. |precommit| image:: https://results.pre-commit.ci/badge/github/hoefling/devpi-client-extensions/master.svg
+   :target: https://results.pre-commit.ci/latest/github/hoefling/devpi-client-extensions/master
+   :alt: pre-commit.ci status
 
 .. _devpi client: https://pypi.org/project/devpi-client/
 
