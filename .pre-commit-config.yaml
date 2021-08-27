@@ -42,31 +42,28 @@ repos:
     hooks:
     -   id: bandit
         exclude: tests/
--   repo: local
+-   repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v0.910
     hooks:
     -   id: mypy
-        name: mypy
-        entry: "poetry run mypy"
-        language: system
         exclude: tests/.*.py
         types: [python]
-        pass_filenames: false
+        additional_dependencies: [devpi-client,keyring]
+-   repo: https://github.com/hoefling/pre-commit-pytype
+    rev: 2021.8.24
+    hooks:
     -   id: pytype
-        name: pytype
-        entry: "poetry run pytype src/"
-        language: system
         exclude: tests/.*.py
         types: [python]
-        pass_filenames: false
-        require_serial: true
-    -   id: pyre
-        name: pyre
-        entry: "poetry run pyre"
-        language: system
+        additional_dependencies: [devpi-client,keyring]
+-   repo: https://github.com/fsouza/pre-commit-pyre-check
+    rev: v2-0.9.3
+    hooks:
+    -   id: pyre-check
+        entry: pyre check
         exclude: tests/.*.py
         types: [python]
-        pass_filenames: false
-        require_serial: true
+        additional_dependencies: [devpi-client,keyring]
 -   repo: https://github.com/PyCQA/doc8
     rev: 0.9.0a1
     hooks:
