@@ -61,6 +61,9 @@ jobs:
         with:
           path: .venv
           key: venv-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }}
+      - name: Workaround for https://github.com/python-poetry/poetry/issues/4210
+        run: python -m poetry config experimental.new-installer false
+        if: matrix.python == '3.10.0-rc.1'
       - name: Install dependencies
         run: poetry install --extras keyring
       - name: Bump package version
