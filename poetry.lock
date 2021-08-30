@@ -924,7 +924,7 @@ keyring = ["keyring"]
 [metadata]
 lock-version = "1.1"
 python-versions = '^3.6'
-content-hash = "765ae0983bf551fb1db025b6ea70169149ab9be391fe6af82f22199f8409089e"
+content-hash = "bd3767a82ac24d15db9fd6fb80e8f88fd2bca7a0808dbfed29da80e2e524e871"
 
 [metadata.files]
 async-generator = [
