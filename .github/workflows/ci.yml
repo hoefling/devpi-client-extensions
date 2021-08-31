@@ -45,6 +45,10 @@ jobs:
           # poetry can't install with 3.10 on windows w/o a UnicodeEncodeError
         - os: windows
           python: 3.10.0-rc.1
+    # reference: https://github.com/snok/install-poetry#running-on-windows
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@v2
       - name: Setup Python ${{ matrix.python }}
