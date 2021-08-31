@@ -77,7 +77,7 @@ jobs:
       - name: Bump package version
         run: poetry run task scm | xargs poetry version
       - name: Run test task
-        run: poetry run task test
+        run: poetry run task test --cov-report xml:coverage.xml --junitxml=unittests.xml
       - name: Upload coverage report to codecov
         uses: codecov/codecov-action@v2
         with:
