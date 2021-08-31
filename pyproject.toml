@@ -40,12 +40,9 @@ keyring = ['keyring']
 pytest = '6.2.5'
 pytest-cov = '2.12.1'
 readme-renderer = '29.0'
-mypy = { version = '0.910', markers = 'implementation_name == "cpython"' }
 taskipy = '1.8.1'
 pre-commit = { version = '2.14.1', python = '>=3.6.1' }
 setuptools-scm = '6.0.1'
-pyre-check = { version = '0.9.3', markers = 'implementation_name == "cpython" and sys_platform != "win32"' }
-pytype = { version = '2021.8.24', markers = 'python_version < "3.10" and implementation_name == "cpython" and sys_platform != "win32"' }
 
 [tool.taskipy.tasks]
 setup = 'poetry install && pre-commit install'
