@@ -79,6 +79,8 @@ jobs:
       - name: Run test task
         run: poetry run task test
       - name: Upload coverage report to codecov
-        shell: bash
-        run: |
-          bash <(curl -s https://codecov.io/bash) -f coverage.xml
+        uses: codecov/codecov-action@v2
+        with:
+          files: coverage.xml
+          fail_ci_if_error: true
+          verbose: true
