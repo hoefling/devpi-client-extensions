@@ -134,9 +134,6 @@ category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
 
-[package.dependencies]
-toml = {version = "*", optional = true, markers = "extra == \"toml\""}
-
 [package.extras]
 toml = ["toml"]
 
@@ -534,7 +531,7 @@ dev = ["pre-commit", "tox"]
 
 [[package]]
 name = "pre-commit"
-version = "2.14.0"
+version = "2.14.1"
 description = "A framework for managing and maintaining multi-language pre-commit hooks."
 category = "dev"
 optional = false
@@ -627,7 +624,7 @@ typing-inspect = "*"
 
 [[package]]
 name = "pytest"
-version = "6.2.4"
+version = "6.2.5"
 description = "pytest: simple powerful testing with Python"
 category = "dev"
 optional = false
@@ -640,7 +637,7 @@ colorama = {version = "*", markers = "sys_platform == \"win32\""}
 importlib-metadata = {version = ">=0.12", markers = "python_version < \"3.8\""}
 iniconfig = "*"
 packaging = "*"
-pluggy = ">=0.12,<1.0.0a1"
+pluggy = ">=0.12,<2.0"
 py = ">=1.8.2"
 toml = "*"
 
@@ -649,22 +646,23 @@ testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xm
 
 [[package]]
 name = "pytest-cov"
-version = "2.12.0"
+version = "2.12.1"
 description = "Pytest plugin for measuring coverage."
 category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [package.dependencies]
-coverage = {version = ">=5.2.1", extras = ["toml"]}
+coverage = ">=5.2.1"
 pytest = ">=4.6"
+toml = "*"
 
 [package.extras]
-testing = ["fields", "hunter", "process-tests (==2.0.2)", "six", "pytest-xdist", "virtualenv"]
+testing = ["fields", "hunter", "process-tests", "six", "pytest-xdist", "virtualenv"]
 
 [[package]]
 name = "pytype"
-version = "2021.8.11"
+version = "2021.8.24"
 description = "Python type inferencer"
 category = "dev"
 optional = false
@@ -924,7 +922,7 @@ keyring = ["keyring"]
 [metadata]
 lock-version = "1.1"
 python-versions = '^3.6'
-content-hash = "bd3767a82ac24d15db9fd6fb80e8f88fd2bca7a0808dbfed29da80e2e524e871"
+content-hash = "78ed268c0b99fe3bd2693ba8a48a7b28ae3729760a865d60bed15e2a5d6b7723"
 
 [metadata.files]
 async-generator = [
@@ -1239,8 +1237,8 @@ pluggy = [
     {file = "pluggy-0.13.1.tar.gz", hash = "sha256:15b2acde666561e1298d71b523007ed7364de07029219b604cf808bfa1c765b0"},
 ]
 pre-commit = [
-    {file = "pre_commit-2.14.0-py2.py3-none-any.whl", hash = "sha256:ec3045ae62e1aa2eecfb8e86fa3025c2e3698f77394ef8d2011ce0aedd85b2d4"},
-    {file = "pre_commit-2.14.0.tar.gz", hash = "sha256:2386eeb4cf6633712c7cc9ede83684d53c8cafca6b59f79c738098b51c6d206c"},
+    {file = "pre_commit-2.14.1-py2.py3-none-any.whl", hash = "sha256:a22d12a02da4d8df314187dfe7a61bda6291d57992060522feed30c8cd658b68"},
+    {file = "pre_commit-2.14.1.tar.gz", hash = "sha256:7977a3103927932d4823178cbe4719ab55bb336f42a9f3bb2776cff99007a117"},
 ]
 psutil = [
     {file = "psutil-5.7.3-cp27-none-win32.whl", hash = "sha256:1cd6a0c9fb35ece2ccf2d1dd733c1e165b342604c67454fd56a4c12e0a106787"},
@@ -1281,23 +1279,23 @@ pyre-extensions = [
     {file = "pyre_extensions-0.0.21-py3-none-any.whl", hash = "sha256:75877e688141c9167d00d2b7e2807a8127a1ab9d758ae5de0026c032ed35523b"},
 ]
 pytest = [
-    {file = "pytest-6.2.4-py3-none-any.whl", hash = "sha256:91ef2131a9bd6be8f76f1f08eac5c5317221d6ad1e143ae03894b862e8976890"},
-    {file = "pytest-6.2.4.tar.gz", hash = "sha256:50bcad0a0b9c5a72c8e4e7c9855a3ad496ca6a881a3641b4260605450772c54b"},
+    {file = "pytest-6.2.5-py3-none-any.whl", hash = "sha256:7310f8d27bc79ced999e760ca304d69f6ba6c6649c0b60fb0e04a4a77cacc134"},
+    {file = "pytest-6.2.5.tar.gz", hash = "sha256:131b36680866a76e6781d13f101efb86cf674ebb9762eb70d3082b6f29889e89"},
 ]
 pytest-cov = [
-    {file = "pytest-cov-2.12.0.tar.gz", hash = "sha256:8535764137fecce504a49c2b742288e3d34bc09eed298ad65963616cc98fd45e"},
-    {file = "pytest_cov-2.12.0-py2.py3-none-any.whl", hash = "sha256:95d4933dcbbacfa377bb60b29801daa30d90c33981ab2a79e9ab4452c165066e"},
+    {file = "pytest-cov-2.12.1.tar.gz", hash = "sha256:261ceeb8c227b726249b376b8526b600f38667ee314f910353fa318caa01f4d7"},
+    {file = "pytest_cov-2.12.1-py2.py3-none-any.whl", hash = "sha256:261bb9e47e65bd099c89c3edf92972865210c36813f80ede5277dceb77a4a62a"},
 ]
 pytype = [
-    {file = "pytype-2021.8.11-cp36-cp36m-macosx_10_14_x86_64.whl", hash = "sha256:8d586c94a9c408ca304b982593baec85958cfa75ac3a44b2dd4e023898eed6db"},
-    {file = "pytype-2021.8.11-cp36-cp36m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:8e42c0d38f8bea4564fd2ae1e3442e12769dfb7ad4c7ed94462fc756567ea42e"},
-    {file = "pytype-2021.8.11-cp37-cp37m-macosx_10_14_x86_64.whl", hash = "sha256:914b7c57c6146183fee217480adb0456405a4eae496c81970f25c75a8f36d913"},
-    {file = "pytype-2021.8.11-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:c48882bedf5ced32c68505f910c42c8c173677fe4bc8ba11536e59d6914e871e"},
-    {file = "pytype-2021.8.11-cp38-cp38-macosx_10_14_x86_64.whl", hash = "sha256:de697a44534589936478cdfc58c95afaa47a8adc87d2299b9ff2d2cf477d2999"},
-    {file = "pytype-2021.8.11-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:76e9c811c1efca7ede7b8189d8545c80487c03fc55c96444b81110c1fcb0c6db"},
-    {file = "pytype-2021.8.11-cp39-cp39-macosx_10_14_x86_64.whl", hash = "sha256:2b1c7bd67a7939df8bcd525d53427e13ea07d248407ab348e9e914378fb9b81b"},
-    {file = "pytype-2021.8.11-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b1cfd436438328e2ae644251f5cd89715e1cf2902beac5d6bbc2855d68bf9171"},
-    {file = "pytype-2021.8.11.tar.gz", hash = "sha256:ccd8beb2ee8e80f627e568900fa2995b07b09256fc2be65b99dc4e078b86aa21"},
+    {file = "pytype-2021.8.24-cp36-cp36m-macosx_10_14_x86_64.whl", hash = "sha256:eed766a0bc6a0697d46041c7e3f710bc6ecebc97b60131def542585a3291f0d5"},
+    {file = "pytype-2021.8.24-cp36-cp36m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:8a0393c099cbca5b89558d567b924389d6ee3a8f3812b4c213e88d672a3b5698"},
+    {file = "pytype-2021.8.24-cp37-cp37m-macosx_10_14_x86_64.whl", hash = "sha256:b9b551982a452f39c02eef9d3603fb736cc0800f38714db85794c44fbaf3b9ae"},
+    {file = "pytype-2021.8.24-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:4b23b226536d64f7e195ceca788e27a58a7aa140526a828d12e1dafb8813a593"},
+    {file = "pytype-2021.8.24-cp38-cp38-macosx_10_14_x86_64.whl", hash = "sha256:e0270f8aab986d4ce7ccb0841c259eb2824057faa0e0eaf8d531c5c0bd6b51eb"},
+    {file = "pytype-2021.8.24-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:ce157ca550181b6f32c4f047abc61a50f4c79da6f6b99bc455a97c1a3b3bb831"},
+    {file = "pytype-2021.8.24-cp39-cp39-macosx_10_14_x86_64.whl", hash = "sha256:af27996b3d96be05ed13790e0ae426509a971dce539f95395e7713185892bee0"},
+    {file = "pytype-2021.8.24-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:feb74e331f82023eca14f6c87bb9602ad9cce042afe2742d076c9f6d0f45ba3b"},
+    {file = "pytype-2021.8.24.tar.gz", hash = "sha256:0fa007ab0f2c856b5a60fb0c611a59868e0c075b9c8ae7463b2ec36feb34e9a3"},
 ]
 pywatchman = [
     {file = "pywatchman-1.4.1.tar.gz", hash = "sha256:d0047eb275deafb0011eda0a1a815fbd9742478c3d2b5ad6956d300e447dc2f9"},
