@@ -42,9 +42,9 @@ jobs:
         os: [ubuntu, macos, windows]
         python: [3.6, 3.7, 3.8, 3.9, 3.10.0-rc.1, pypy3]
         exclude:
-          # poetry can't install with 3.10 on windows w/o a UnicodeEncodeError
+          # poetry can't install with 3.6 on windows w/o a UnicodeEncodeError
         - os: windows
-          python: 3.10.0-rc.1
+          python: 3.6
     # reference: https://github.com/snok/install-poetry#running-on-windows
     defaults:
       run:
