@@ -65,7 +65,7 @@ repos:
         types: [python]
         additional_dependencies: [devpi-client,keyring]
 -   repo: https://github.com/PyCQA/doc8
-    rev: 0.9.0
+    rev: 0.9.1
     hooks:
     -   id: doc8
 -   repo: https://github.com/pre-commit/pygrep-hooks
