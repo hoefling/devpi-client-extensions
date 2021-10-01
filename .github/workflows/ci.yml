@@ -17,7 +17,7 @@ jobs:
         id: full-python-version
         run: echo ::set-output name=version::$(python -c "import sys; print(*sys.version_info, sep='-')")
       - name: Install poetry
-        uses: snok/install-poetry@v1.2.0
+        uses: snok/install-poetry@v1.2.1
         with:
           virtualenvs-create: true
           virtualenvs-in-project: true
@@ -59,7 +59,7 @@ jobs:
         id: full-python-version
         run: echo ::set-output name=version::$(python -c "import sys; print(*sys.version_info, sep='-')")
       - name: Install poetry
-        uses: snok/install-poetry@v1.2.0
+        uses: snok/install-poetry@v1.2.1
         with:
           virtualenvs-create: true
           virtualenvs-in-project: true
