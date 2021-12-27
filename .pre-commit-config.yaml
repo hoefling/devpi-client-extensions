@@ -14,7 +14,7 @@ repos:
         files: ^_typeshed/.*.pyi?$  # format .py and .pyi files
         args: [--config=_typeshed/pyproject.toml]
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.0.1
+    rev: v4.1.0
     hooks:
     -   id: no-commit-to-branch
     -   id: trailing-whitespace
@@ -43,7 +43,7 @@ repos:
     -   id: bandit
         exclude: tests/
 -   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v0.920
+    rev: v0.930
     hooks:
     -   id: mypy
         exclude: tests/.*.py
@@ -57,7 +57,7 @@ repos:
         types: [python]
         additional_dependencies: [devpi-client,keyring]
 -   repo: https://github.com/fsouza/pre-commit-pyre-check
-    rev: v2-0.9.8
+    rev: v2-0.9.9
     hooks:
     -   id: pyre-check
         entry: pyre check
