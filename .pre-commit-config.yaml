@@ -50,14 +50,14 @@ repos:
         types: [python]
         additional_dependencies: [devpi-client,keyring]
 -   repo: https://github.com/hoefling/pre-commit-pytype
-    rev: 2021.8.24
+    rev: 2022.1.13
     hooks:
     -   id: pytype
         exclude: tests/.*.py
         types: [python]
         additional_dependencies: [devpi-client,keyring]
 -   repo: https://github.com/fsouza/pre-commit-pyre-check
-    rev: v2-0.9.9
+    rev: v2-0.9.10
     hooks:
     -   id: pyre-check
         entry: pyre check
