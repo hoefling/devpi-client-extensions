@@ -526,7 +526,7 @@ jeepney = ">=0.4.2"
 
 [[package]]
 name = "setuptools-scm"
-version = "6.4.0"
+version = "6.4.1"
 description = "the blessed package to manage your versions by scm tags"
 category = "dev"
 optional = false
@@ -669,7 +669,7 @@ keyring = ["keyring"]
 [metadata]
 lock-version = "1.1"
 python-versions = '^3.6'
-content-hash = "b01e0ef9a62a1f2d2890be8f462abdc67c19e287dbfc8aca86720215beaa6aec"
+content-hash = "f96edd0fb213e84f3ce334ba92723965a854c79497049548b14d792396d9130b"
 
 [metadata.files]
 atomicwrites = [
@@ -972,8 +972,8 @@ secretstorage = [
     {file = "SecretStorage-3.2.0.tar.gz", hash = "sha256:46305c3847ee3f7252b284e0eee5590fa6341c891104a2fd2313f8798c615a82"},
 ]
 setuptools-scm = [
-    {file = "setuptools_scm-6.4.0-py3-none-any.whl", hash = "sha256:cd3906321824191cfd6972c1a8ad6f5171b49edc5996eba14bcbd33e98fb1ebe"},
-    {file = "setuptools_scm-6.4.0.tar.gz", hash = "sha256:54f5b1dcccd28e7813236609e620671f23d548548d744270a07d8df6df623649"},
+    {file = "setuptools_scm-6.4.1-py3-none-any.whl", hash = "sha256:93bbcc1d3e92f20eaef42df31e4b5e5a348f8cb0e48eaff3e060184a57e94b07"},
+    {file = "setuptools_scm-6.4.1.tar.gz", hash = "sha256:9bd9ff7fd5fa1cf469fe28a632336b9cfd351476c6d09379ff676d3945f669b9"},
 ]
 six = [
     {file = "six-1.15.0-py2.py3-none-any.whl", hash = "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"},
