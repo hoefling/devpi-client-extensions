@@ -550,7 +550,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
 name = "taskipy"
-version = "1.10.0"
+version = "1.10.1"
 description = "tasks runner for python projects"
 category = "dev"
 optional = false
@@ -669,7 +669,7 @@ keyring = ["keyring"]
 [metadata]
 lock-version = "1.1"
 python-versions = '^3.6'
-content-hash = "d1cf1abee3d679cf5b0e2e9ac9a6d7d55ce82d26e90457834108a41d0ae9fd9a"
+content-hash = "053aa12e240f3aef7023883abdc573e85b7b56f1e9939aa8fb1f468ad18bf72c"
 
 [metadata.files]
 atomicwrites = [
@@ -980,8 +980,8 @@ six = [
     {file = "six-1.15.0.tar.gz", hash = "sha256:30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259"},
 ]
 taskipy = [
-    {file = "taskipy-1.10.0-py3-none-any.whl", hash = "sha256:92a2728541d5b5a91966be72e86cba9f2f51fcf1a6fc2237cc2ca6fdcaeff7c5"},
-    {file = "taskipy-1.10.0.tar.gz", hash = "sha256:7564214afc1d1b50faf0fd7d44fc43d8aeabd10690119798aff6c76b1576c4f7"},
+    {file = "taskipy-1.10.1-py3-none-any.whl", hash = "sha256:9b38333654da487b6d16de6fa330b7629d1935d1e74819ba4c5f17a1c372d37b"},
+    {file = "taskipy-1.10.1.tar.gz", hash = "sha256:6fa0b11c43d103e376063e90be31d87b435aad50fb7dc1c9a2de9b60a85015ed"},
 ]
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
