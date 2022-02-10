@@ -550,7 +550,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
 name = "taskipy"
-version = "1.9.0"
+version = "1.10.0"
 description = "tasks runner for python projects"
 category = "dev"
 optional = false
@@ -560,7 +560,7 @@ python-versions = ">=3.6,<4.0"
 colorama = ">=0.4.4,<0.5.0"
 mslex = {version = ">=0.3.0,<0.4.0", markers = "sys_platform == \"win32\""}
 psutil = ">=5.7.2,<6.0.0"
-toml = ">=0.10.0,<0.11.0"
+tomli = ">=1.2.3,<2.0.0"
 
 [[package]]
 name = "toml"
@@ -572,7 +572,7 @@ python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
 name = "tomli"
-version = "1.2.1"
+version = "1.2.3"
 description = "A lil' TOML parser"
 category = "dev"
 optional = false
@@ -669,7 +669,7 @@ keyring = ["keyring"]
 [metadata]
 lock-version = "1.1"
 python-versions = '^3.6'
-content-hash = "ab1dbdc8946b733efc815e068e98a8596c947f8b04a6bcfb40eb20dcc0e45456"
+content-hash = "d1cf1abee3d679cf5b0e2e9ac9a6d7d55ce82d26e90457834108a41d0ae9fd9a"
 
 [metadata.files]
 atomicwrites = [
@@ -980,16 +980,16 @@ six = [
     {file = "six-1.15.0.tar.gz", hash = "sha256:30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259"},
 ]
 taskipy = [
-    {file = "taskipy-1.9.0-py3-none-any.whl", hash = "sha256:02bd2c51c7356ed3f7f8853210ada1cd2ab273e68359ee865021c3057eec6615"},
-    {file = "taskipy-1.9.0.tar.gz", hash = "sha256:449c160b557cdb1d9c17097a5ea4aa0cd5223723ddbaaa5d5032dd16274fb8f0"},
+    {file = "taskipy-1.10.0-py3-none-any.whl", hash = "sha256:92a2728541d5b5a91966be72e86cba9f2f51fcf1a6fc2237cc2ca6fdcaeff7c5"},
+    {file = "taskipy-1.10.0.tar.gz", hash = "sha256:7564214afc1d1b50faf0fd7d44fc43d8aeabd10690119798aff6c76b1576c4f7"},
 ]
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
     {file = "toml-0.10.2.tar.gz", hash = "sha256:b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"},
 ]
 tomli = [
-    {file = "tomli-1.2.1-py3-none-any.whl", hash = "sha256:8dd0e9524d6f386271a36b41dbf6c57d8e32fd96fd22b6584679dc569d20899f"},
-    {file = "tomli-1.2.1.tar.gz", hash = "sha256:a5b75cb6f3968abb47af1b40c1819dc519ea82bcc065776a866e8d74c5ca9442"},
+    {file = "tomli-1.2.3-py3-none-any.whl", hash = "sha256:e3069e4be3ead9668e21cb9b074cd948f7b3113fd9c8bba083f48247aab8b11c"},
+    {file = "tomli-1.2.3.tar.gz", hash = "sha256:05b6166bff487dc068d322585c7ea4ef78deed501cc124060e0f238e89a9231f"},
 ]
 tox = [
     {file = "tox-3.24.3-py2.py3-none-any.whl", hash = "sha256:9fbf8e2ab758b2a5e7cb2c72945e4728089934853076f67ef18d7575c8ab6b88"},
