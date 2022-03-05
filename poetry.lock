@@ -480,7 +480,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
 
 [[package]]
 name = "readme-renderer"
-version = "32.0"
+version = "33.0"
 description = "readme_renderer is a library for rendering \"readme\" descriptions for Warehouse"
 category = "dev"
 optional = false
@@ -492,7 +492,7 @@ docutils = ">=0.13.1"
 Pygments = ">=2.5.1"
 
 [package.extras]
-md = ["cmarkgfm (>=0.5.0,<0.7.0)"]
+md = ["cmarkgfm (>=0.8.0)"]
 
 [[package]]
 name = "requests"
@@ -669,7 +669,7 @@ keyring = ["keyring"]
 [metadata]
 lock-version = "1.1"
 python-versions = '^3.6'
-content-hash = "806f1e3a4f2136c4e2485442747095c98e61934d13301c803c16ef1b7dcd7d92"
+content-hash = "b10451ff4918e7c5c49d141397457dd0e23821b4f4fea7bbbdf6201bfba88a4f"
 
 [metadata.files]
 atomicwrites = [
@@ -960,8 +960,8 @@ pyyaml = [
     {file = "PyYAML-5.4.tar.gz", hash = "sha256:3c49e39ac034fd64fd576d63bb4db53cda89b362768a67f07749d55f128ac18a"},
 ]
 readme-renderer = [
-    {file = "readme_renderer-32.0-py3-none-any.whl", hash = "sha256:a50a0f2123a4c1145ac6f420e1a348aafefcc9211c846e3d51df05fe3d865b7d"},
-    {file = "readme_renderer-32.0.tar.gz", hash = "sha256:b512beafa6798260c7d5af3e1b1f097e58bfcd9a575da7c4ddd5e037490a5b85"},
+    {file = "readme_renderer-33.0-py3-none-any.whl", hash = "sha256:f02cee0c4de9636b5a62b6be50c9742427ba1b956aad1d938bfb087d0d72ccdf"},
+    {file = "readme_renderer-33.0.tar.gz", hash = "sha256:e3b53bc84bd6af054e4cc1fe3567dc1ae19f554134221043a3f8c674e22209db"},
 ]
 requests = [
     {file = "requests-2.25.0-py2.py3-none-any.whl", hash = "sha256:e786fa28d8c9154e6a4de5d46a1d921b8749f8b74e28bde23768e5e16eece998"},
