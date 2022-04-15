@@ -49,6 +49,11 @@ jobs:
           # poetry can't install with 3.6 on windows w/o a UnicodeEncodeError
         - os: windows
           python: 3.6
+          # skip pypy3 + win builds until https://github.com/python-poetry/poetry/issues/4626 is fixed
+        - os: windows
+          python: pypy-3.7
+        - os: windows
+          python: pypy-3.9
     # reference: https://github.com/snok/install-poetry#running-on-windows
     defaults:
       run:
