@@ -1,5 +1,9 @@
 name: CI
-on: [push, pull_request]
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 jobs:
   code-quality:
     name: Code quality
@@ -40,11 +44,13 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu, macos, windows]
-        python: ['3.6', '3.7', '3.8', '3.9', '3.10', 'pypy-3.7']
+        python: ['3.7', '3.8', '3.9', '3.10', 'pypy-3.7', 'pypy-3.9']
         exclude:
-          # poetry can't install with 3.6 on windows w/o a UnicodeEncodeError
+          # skip pypy3 + win builds until https://github.com/python-poetry/poetry/issues/4626 is fixed
         - os: windows
-          python: 3.6
+          python: pypy-3.7
+        - os: windows
+          python: pypy-3.9
     # reference: https://github.com/snok/install-poetry#running-on-windows
     defaults:
       run:
@@ -63,9 +69,6 @@ jobs:
         with:
           virtualenvs-create: true
           virtualenvs-in-project: true
-      - name: Workaround for https://github.com/python-poetry/poetry/issues/4210
-        run: poetry config experimental.new-installer false
-        if: matrix.python == '3.10.0-rc.1'
       - name: Set up cache
         uses: actions/cache@v3
         id: cache
