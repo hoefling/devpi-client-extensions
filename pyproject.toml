@@ -40,7 +40,7 @@ keyring = ['keyring']
 pytest = '7.1.2'
 pytest-cov = '3.0.0'
 readme-renderer = '37.0'
-taskipy = '1.10.1'
+taskipy = '1.10.2'
 pre-commit = { version = '2.20.0', python = '>=3.6.1' }
 setuptools-scm = '7.0.5'
 
