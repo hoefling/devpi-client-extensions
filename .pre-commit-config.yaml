@@ -50,7 +50,7 @@ repos:
         types: [python]
         additional_dependencies: [devpi-client,keyring]
 -   repo: https://github.com/hoefling/pre-commit-pytype
-    rev: 2022.9.8
+    rev: 2022.9.19
     hooks:
     -   id: pytype
         exclude: tests/.*.py
