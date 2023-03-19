@@ -1,5 +1,9 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
+ci:
+    skip:
+    -   pytype  # does not support py3.11 yet
+
 repos:
 -   repo: https://github.com/psf/black
     rev: 23.1.0

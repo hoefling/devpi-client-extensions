@@ -41,7 +41,7 @@ pytest = '7.2.0'
 pytest-cov = '4.0.0'
 readme-renderer = '37.2'
 taskipy = '1.10.3'
-pre-commit = { version = '2.21.0', python = '>=3.6.1' }
+pre-commit = { version = '3.2.0', python = '>=3.8' }
 setuptools-scm = '7.0.5'
 
 [tool.taskipy.tasks]
