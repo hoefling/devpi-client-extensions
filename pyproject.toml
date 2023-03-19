@@ -80,6 +80,23 @@ warn_no_return = true
 no_implicit_reexport = true
 show_error_codes = true
 
+[tool.flake8]
+enable-extensions = [
+    "G",
+]
+exclude = [
+    "tests/*",
+]
+ignore = [
+    "E501",  # we let black handle long lines
+    "D202",  # we let black handle lines after docstring
+    "E203",  # we let black handle whitespace
+    "W503",  # let black handle line breaks
+]
+
+[tool.doc8]
+max-line-length = 89
+
 [build-system]
 requires = ['poetry-core>=1.0']
 build-backend = 'poetry.core.masonry.api'
