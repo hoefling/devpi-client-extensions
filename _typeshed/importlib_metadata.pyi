@@ -4,17 +4,7 @@ import pathlib
 from email.message import Message
 from importlib.abc import MetaPathFinder
 from pathlib import Path
-from typing import (
-    Any,
-    Dict,
-    Iterable,
-    List,
-    NamedTuple,
-    Optional,
-    Tuple,
-    Union,
-    overload,
-)
+from typing import Any, Dict, Iterable, List, NamedTuple, Optional, Tuple, Union, overload
 
 class PackageNotFoundError(ModuleNotFoundError): ...
 

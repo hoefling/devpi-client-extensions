@@ -2,9 +2,9 @@ import pathlib
 
 import pytest
 import toml
-from devpi.main import get_pluginmanager
-
 from devpi_ext import login
+
+from devpi.main import get_pluginmanager
 
 
 @pytest.fixture(scope='session', params=('_pypirc_plugin', '_keyring_plugin'))
