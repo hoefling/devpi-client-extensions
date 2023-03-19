@@ -41,7 +41,7 @@ pytest = '7.2.0'
 pytest-cov = '4.0.0'
 readme-renderer = '37.2'
 taskipy = '1.10.3'
-pre-commit = { version = '2.21.0', python = '>=3.6.1' }
+pre-commit = { version = '3.2.0', python = '>=3.8' }
 setuptools-scm = '7.0.5'
 
 [tool.taskipy.tasks]
@@ -79,6 +79,23 @@ warn_return_any = true
 warn_no_return = true
 no_implicit_reexport = true
 show_error_codes = true
+
+[tool.flake8]
+enable-extensions = [
+    "G",
+]
+exclude = [
+    "tests/*",
+]
+ignore = [
+    "E501",  # we let black handle long lines
+    "D202",  # we let black handle lines after docstring
+    "E203",  # we let black handle whitespace
+    "W503",  # let black handle line breaks
+]
+
+[tool.doc8]
+max-line-length = 89
 
 [build-system]
 requires = ['poetry-core>=1.0']

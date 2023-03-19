@@ -2,7 +2,6 @@ import builtins
 from io import StringIO  # python3
 
 import pytest
-
 from devpi_ext import login
 
 section = ['[foo]', 'repository: http://foo', 'username: bar', 'password: baz']
