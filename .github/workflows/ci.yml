@@ -44,7 +44,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu, macos, windows]
-        python: ['3.7', '3.8', '3.9', '3.10', 'pypy-3.7', 'pypy-3.9']
+        python: ['3.7', '3.8', '3.9', '3.10', '3.11', 'pypy-3.7', 'pypy-3.9']
         exclude:
           # skip pypy3 + win builds until https://github.com/python-poetry/poetry/issues/4626 is fixed
         - os: windows
@@ -84,6 +84,7 @@ jobs:
       - name: Upload coverage report to codecov
         uses: codecov/codecov-action@v3
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: coverage.xml
           fail_ci_if_error: true
           verbose: true
