@@ -61,6 +61,7 @@ target_version = ['py38']
 
 [tool.isort]
 profile = 'black'
+force_to_top = true
 
 [tool.mypy]
 files = ['src']
@@ -100,6 +101,17 @@ ignore = [
 
 [tool.doc8]
 max-line-length = 89
+
+[tool.ruff]
+select = ["A", "B", "E", "ERA", "F", "G", "I", "N", "PTH", "W", "YTT"]
+ignore = [
+    "E501",  # we let black handle long lines
+    "D202",  # we let black handle lines after docstring
+    "B905",  # this flag is not backwards-compatible to py3.9
+]
+exclude = [
+    "tests/*",
+]
 
 [build-system]
 requires = ['poetry-core>=1.0']
