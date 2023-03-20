@@ -32,7 +32,7 @@ jobs:
           path: .venv
           key: venv-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }}
       - name: Install dependencies
-        run: poetry install --extras keyring
+        run: poetry install --extras=keyring --only=main,dev,lint
       - name: Run lint task
         env:
           SKIP: no-commit-to-branch
@@ -76,7 +76,7 @@ jobs:
           path: .venv
           key: v1-venv-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }}
       - name: Install dependencies
-        run: poetry install --extras keyring
+        run: poetry install --extras=keyring --only=main,dev,test
       - name: Bump package version
         run: poetry run task scm | xargs poetry version
       - name: Run test task
