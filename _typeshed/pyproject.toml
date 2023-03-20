@@ -6,3 +6,7 @@ target_version = ["py37"]
 profile = "black"
 combine_as_imports = true
 line_length = 130
+
+[tool.ruff]
+select = ["PYI"]
+line-length = 130
