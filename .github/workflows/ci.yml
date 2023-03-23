@@ -13,6 +13,8 @@ jobs:
         shell: bash
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # clone fulle history so setuptools-scm can calculate the correct dev version
       - name: Setup Python 3.9
         uses: actions/setup-python@v4
         with:
