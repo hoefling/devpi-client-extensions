@@ -19,7 +19,7 @@ jobs:
           python-version: 3.9
       - name: Get full Python version
         id: full-python-version
-        run: echo ::set-output name=version::$(python -c "import sys; print(*sys.version_info, sep='-')")
+        run: echo version=$(python -c "import sys; print(*sys.version_info, sep='-')") >> $GITHUB_OUTPUT
       - name: Install poetry
         uses: snok/install-poetry@v1.3.3
         with:
@@ -63,7 +63,7 @@ jobs:
           python-version: ${{ matrix.python }}
       - name: Get full Python version
         id: full-python-version
-        run: echo ::set-output name=version::$(python -c "import sys; print(*sys.version_info, sep='-')")
+        run: echo version=$(python -c "import sys; print(*sys.version_info, sep='-')") >> $GITHUB_OUTPUT
       - name: Install poetry
         uses: snok/install-poetry@v1.3.3
         with:
