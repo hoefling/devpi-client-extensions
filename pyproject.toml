@@ -37,7 +37,7 @@ importlib-metadata = { version = '^6.0.0', python = '<3.8' }
 keyring = ['keyring']
 
 [tool.poetry.group.dev.dependencies]
-taskipy = '1.10.3'
+taskipy = '1.10.4'
 setuptools-scm = '7.1.0'
 
 [tool.poetry.group.lint.dependencies]
