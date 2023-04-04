@@ -1,6 +1,6 @@
 from typing import Any, Callable
 
-C = Callable[..., Any]
+C = ...
 
 class HookimplMarker:
     project_name: str = ...
