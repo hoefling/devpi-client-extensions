@@ -1,6 +1,6 @@
 from typing import Any
 
-from pluggy.hooks import HookimplMarker
+from pluggy._hooks import HookimplMarker
 
 hookimpl: HookimplMarker
 
