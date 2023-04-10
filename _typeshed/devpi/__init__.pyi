@@ -1,3 +1,1 @@
-from typing import Any
-
-def __getattr__(name: str) -> Any: ...  # incomplete
+from _typeshed import Incomplete
