@@ -1,16 +1,21 @@
 import pathlib
 
 import pytest
-import toml
 from devpi_ext import login
 
 from devpi.main import get_pluginmanager
+
+try:
+    import tomllib
+except ModuleNotFoundError:
+    import tomli as tomllib
 
 
 @pytest.fixture(scope='session', params=('_pypirc_plugin', '_keyring_plugin'))
 def plugin_name(request):
     pyproj = pathlib.Path(__file__, '..', '..', 'pyproject.toml').resolve()
-    conf = toml.load(str(pyproj))  # python < 3.6 compat
+    with pyproj.open(mode='rb') as fp:
+        conf = tomllib.load(fp)
     return next(
         k
         for k, v in conf['tool']['poetry']['plugins']['devpi_client'].items()

@@ -1067,4 +1067,4 @@ keyring = ["keyring"]
 [metadata]
 lock-version = "2.0"
 python-versions = '^3.7'
-content-hash = "d6d13062c5e63b552a5c6fe2c737c36daee387f0a50dfc2dfcdfa05fd67bbd6d"
+content-hash = "e406acd78f650a4907ead2b4c8d08dd1fde0aee4a8ffe3affe86ced1b9cac601"

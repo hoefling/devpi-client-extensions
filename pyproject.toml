@@ -47,6 +47,7 @@ pre-commit = { version = '3.2.2', python = '>=3.8' }
 pytest = '7.3.0'
 pytest-cov = '4.0.0'
 readme-renderer = '37.3'
+tomli = { version = '2.0.1', python = '<3.11' }
 
 [tool.taskipy.tasks]
 setup = 'poetry install && pre-commit install'
