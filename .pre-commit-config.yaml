@@ -68,14 +68,14 @@ repos:
     -   id: bandit
         exclude: tests/
 -   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.1.1
+    rev: v1.2.0
     hooks:
     -   id: mypy
         exclude: tests/.*.py
         types: [python]
         additional_dependencies: [devpi-client,keyring]
 -   repo: https://github.com/hoefling/pre-commit-pytype
-    rev: 2023.3.13
+    rev: 2023.3.31
     hooks:
     -   id: pytype
         exclude: tests/.*.py
