@@ -273,14 +273,14 @@ tox = ["tox"]
 
 [[package]]
 name = "devpi-client"
-version = "6.0.3"
+version = "6.0.4"
 description = "devpi upload/install/... workflow commands for Python developers"
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 files = [
-    {file = "devpi-client-6.0.3.tar.gz", hash = "sha256:72c7505319e8a47fa462da2a76fc9728d5b77c6910352444258c637acf43822f"},
-    {file = "devpi_client-6.0.3-py2.py3-none-any.whl", hash = "sha256:59cf24b21bb2b7ac68cfc5e2c7f5a3d4b33efbaad8d93c9c44af6462c5023564"},
+    {file = "devpi-client-6.0.4.tar.gz", hash = "sha256:b87309e9af657ea4f104381b29816afc08f8821920091ca182fdbb11ec9f00d6"},
+    {file = "devpi_client-6.0.4-py2.py3-none-any.whl", hash = "sha256:2077e7966a1f7926228b82a24eca2bee1c07563413785aba0e240fc5676fe247"},
 ]
 
 [package.dependencies]
