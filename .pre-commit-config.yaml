@@ -75,7 +75,7 @@ repos:
         types: [python]
         additional_dependencies: [devpi-client,keyring]
 -   repo: https://github.com/hoefling/pre-commit-pytype
-    rev: 2023.3.31
+    rev: 2023.4.11
     hooks:
     -   id: pytype
         exclude: tests/.*.py
