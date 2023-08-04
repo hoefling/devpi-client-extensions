@@ -23,7 +23,7 @@ jobs:
         id: full-python-version
         run: echo version=$(python -c "import sys; print(*sys.version_info, sep='-')") >> $GITHUB_OUTPUT
       - name: Install poetry
-        uses: snok/install-poetry@v1.3.3
+        uses: snok/install-poetry@v1.3.4
         with:
           virtualenvs-create: true
           virtualenvs-in-project: true
@@ -67,7 +67,7 @@ jobs:
         id: full-python-version
         run: echo version=$(python -c "import sys; print(*sys.version_info, sep='-')") >> $GITHUB_OUTPUT
       - name: Install poetry
-        uses: snok/install-poetry@v1.3.3
+        uses: snok/install-poetry@v1.3.4
         with:
           virtualenvs-create: true
           virtualenvs-in-project: true
