@@ -38,7 +38,7 @@ keyring = ['keyring']
 
 [tool.poetry.group.dev.dependencies]
 taskipy = '1.10.4'
-setuptools-scm = '7.1.0'
+setuptools-scm = '8.0.4'
 
 [tool.poetry.group.lint.dependencies]
 pre-commit = { version = '3.3.0', python = '>=3.8' }
