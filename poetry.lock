@@ -530,14 +530,14 @@ files = [
 
 [[package]]
 name = "mslex"
-version = "0.3.0"
+version = "1.1.0"
 description = "shlex for windows"
 category = "dev"
 optional = false
 python-versions = ">=3.5"
 files = [
-    {file = "mslex-0.3.0-py2.py3-none-any.whl", hash = "sha256:380cb14abf8fabf40e56df5c8b21a6d533dc5cbdcfe42406bbf08dda8f42e42a"},
-    {file = "mslex-0.3.0.tar.gz", hash = "sha256:4a1ac3f25025cad78ad2fe499dd16d42759f7a3801645399cce5c404415daa97"},
+    {file = "mslex-1.1.0-py2.py3-none-any.whl", hash = "sha256:8826f4bb8d8c63402203d921dc8c2df0c7fec0d9c91d020ddf02fc9d0dce81bd"},
+    {file = "mslex-1.1.0.tar.gz", hash = "sha256:7fe305fbdc9721283875e0b737fdb344374b761338a7f41af91875de278568e4"},
 ]
 
 [[package]]
@@ -942,19 +942,19 @@ files = [
 
 [[package]]
 name = "taskipy"
-version = "1.10.4"
+version = "1.12.2"
 description = "tasks runner for python projects"
 category = "dev"
 optional = false
 python-versions = ">=3.6,<4.0"
 files = [
-    {file = "taskipy-1.10.4-py3-none-any.whl", hash = "sha256:b96245d7f2956d36821435acaa822143ef6d2ff6cfecc48cf0a48c4b95456c14"},
-    {file = "taskipy-1.10.4.tar.gz", hash = "sha256:0006429f708f530fc7add28ca51fd41f6c6e1fbe86763ff05125e1af3e8bdc7e"},
+    {file = "taskipy-1.12.2-py3-none-any.whl", hash = "sha256:ffdbb0bb0db54c0ec5c424610a3a087eea22706d4d1f6e3e8b4f12ebba05f98f"},
+    {file = "taskipy-1.12.2.tar.gz", hash = "sha256:eadfdc20d6bb94d8018eda32f1dbf584cf4aa6cffb71ba5cc2de20d344f8c4fb"},
 ]
 
 [package.dependencies]
 colorama = ">=0.4.4,<0.5.0"
-mslex = {version = ">=0.3.0,<0.4.0", markers = "sys_platform == \"win32\""}
+mslex = {version = ">=1.1.0,<2.0.0", markers = "sys_platform == \"win32\""}
 psutil = ">=5.7.2,<6.0.0"
 tomli = {version = ">=2.0.1,<3.0.0", markers = "python_version >= \"3.7\" and python_version < \"4.0\""}
 
@@ -1067,4 +1067,4 @@ keyring = ["keyring"]
 [metadata]
 lock-version = "2.0"
 python-versions = '^3.7'
-content-hash = "482aa7ef75f3f5bb159324879e24c9e2ec95e3033775820c86516cd338ab82b1"
+content-hash = "f055a9ca5db2014c6f5460bdf85948524d86e1ad356b7aae8e563eccf72e301d"
