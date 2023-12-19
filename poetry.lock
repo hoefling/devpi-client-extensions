@@ -273,42 +273,41 @@ tox = ["tox"]
 
 [[package]]
 name = "devpi-client"
-version = "6.0.4"
+version = "7.0.2"
 description = "devpi upload/install/... workflow commands for Python developers"
 category = "main"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+python-versions = ">=3.7"
 files = [
-    {file = "devpi-client-6.0.4.tar.gz", hash = "sha256:b87309e9af657ea4f104381b29816afc08f8821920091ca182fdbb11ec9f00d6"},
-    {file = "devpi_client-6.0.4-py2.py3-none-any.whl", hash = "sha256:2077e7966a1f7926228b82a24eca2bee1c07563413785aba0e240fc5676fe247"},
+    {file = "devpi-client-7.0.2.tar.gz", hash = "sha256:a0e5f967c59780d258b205ea1c4d82b177439c0dd798317a6b10f50f7d7c6cf4"},
+    {file = "devpi_client-7.0.2-py3-none-any.whl", hash = "sha256:fb63fd088dce1ddd7cbe9879f6cc95bf464eb3d48cbdf51fc9c7bdef5e4d1ba0"},
 ]
 
 [package.dependencies]
 build = "*"
 check-manifest = ">=0.28"
-devpi-common = ">=3.6.0,<4"
+colorama = {version = "*", markers = "platform_system == \"Windows\""}
+devpi-common = ">=4dev,<5"
 iniconfig = "*"
-pep517 = "*"
 pkginfo = ">=1.4.2"
 platformdirs = "*"
 pluggy = ">=0.6.0,<2.0"
-py = ">=1.4.31"
 
 [[package]]
 name = "devpi-common"
-version = "3.6.0"
-description = "utilities jointly used by devpi-server and devpi-client"
+version = "4.0.3"
+description = "Utilities jointly used by devpi-server, devpi-client and others."
 category = "main"
 optional = false
-python-versions = "*"
+python-versions = ">=3.7"
 files = [
-    {file = "devpi-common-3.6.0.tar.gz", hash = "sha256:fc14aa6b74d4d9e27dc2e9cbff000ed9be5cd723d3ac9672e66e4e8fce797227"},
-    {file = "devpi_common-3.6.0-py2.py3-none-any.whl", hash = "sha256:6394b7a8c0cf7aca838f86d5a218d32aaedebfe641ef562e428ebf8bce84c712"},
+    {file = "devpi-common-4.0.3.tar.gz", hash = "sha256:f8e01b4f6df080f62284cce58c5bb1ce1e869b0c234aac7ad135609745fc173d"},
+    {file = "devpi_common-4.0.3-py3-none-any.whl", hash = "sha256:d96be2e842fa76d7c67c185ec037e80e250b323271edaa716ccb31eecd0d73eb"},
 ]
 
 [package.dependencies]
 lazy = "*"
-py = ">=1.4.20"
+packaging = ">=22"
 requests = ">=2.3.0"
 
 [[package]]
@@ -554,19 +553,15 @@ files = [
 
 [[package]]
 name = "packaging"
-version = "20.4"
+version = "23.2"
 description = "Core utilities for Python packages"
 category = "main"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+python-versions = ">=3.7"
 files = [
-    {file = "packaging-20.4-py2.py3-none-any.whl", hash = "sha256:998416ba6962ae7fbd6596850b80e17859a5753ba17c32284f67bfff33784181"},
-    {file = "packaging-20.4.tar.gz", hash = "sha256:4357f74f47b9c12db93624a82154e9b120fa8293699949152b22065d556079f8"},
+    {file = "packaging-23.2-py3-none-any.whl", hash = "sha256:8c491190033a9af7e1d931d0b5dacc2ef47509b34dd0de67ed209b5203fc88c7"},
+    {file = "packaging-23.2.tar.gz", hash = "sha256:048fb0e9405036518eaaf48a55953c750c11e1a1b68e0dd1a9d62ed0c092cfc5"},
 ]
-
-[package.dependencies]
-pyparsing = ">=2.0.2"
-six = "*"
 
 [[package]]
 name = "pep517"
@@ -682,18 +677,6 @@ files = [
 test = ["enum34", "ipaddress", "mock", "pywin32", "wmi"]
 
 [[package]]
-name = "py"
-version = "1.11.0"
-description = "library with cross-python path, ini-parsing, io, code, log facilities"
-category = "main"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-files = [
-    {file = "py-1.11.0-py2.py3-none-any.whl", hash = "sha256:607c53218732647dff4acdfcd50cb62615cedf612e72d1724fb1a0cc6405b378"},
-    {file = "py-1.11.0.tar.gz", hash = "sha256:51c75c4126074b472f746a24399ad32f6053d1b34b68d2fa41e558e6f4a98719"},
-]
-
-[[package]]
 name = "pycparser"
 version = "2.20"
 description = "C parser in Python"
@@ -715,18 +698,6 @@ python-versions = ">=3.5"
 files = [
     {file = "Pygments-2.7.4-py3-none-any.whl", hash = "sha256:bc9591213a8f0e0ca1a5e68a479b4887fdc3e75d0774e5c71c31920c427de435"},
     {file = "Pygments-2.7.4.tar.gz", hash = "sha256:df49d09b498e83c1a73128295860250b0b7edd4c723a32e9bc0d295c7c2ec337"},
-]
-
-[[package]]
-name = "pyparsing"
-version = "2.4.7"
-description = "Python parsing module"
-category = "main"
-optional = false
-python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
-files = [
-    {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},
-    {file = "pyparsing-2.4.7.tar.gz", hash = "sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1"},
 ]
 
 [[package]]
@@ -932,7 +903,7 @@ toml = ["setuptools (>=42)"]
 name = "six"
 version = "1.15.0"
 description = "Python 2 and 3 compatibility utilities"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 files = [
