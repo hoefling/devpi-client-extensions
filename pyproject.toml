@@ -23,6 +23,15 @@ packages = [
     { include = 'devpi_ext', from = 'src' },
 ]
 
+[tool.poetry-dynamic-versioning]
+enable = true
+vcs = "git"
+dirty = true
+pattern = "default-unprefixed"
+style = "pep440"
+bump = true
+ignore-untracked = true
+
 [tool.poetry.plugins.'devpi_client']
 'devpi-client-ext-login-pypirc' = 'devpi_ext.login:_pypirc_plugin'
 'devpi-client-ext-login-keyring' = 'devpi_ext.login:_keyring_plugin [keyring]'
@@ -38,7 +47,6 @@ keyring = ['keyring']
 
 [tool.poetry.group.dev.dependencies]
 taskipy = '1.14.0'
-setuptools-scm = '7.1.0'
 
 [tool.poetry.group.lint.dependencies]
 pre-commit = { version = '3.3.0', python = '>=3.8' }
@@ -53,7 +61,6 @@ tomli = { version = '2.0.1', python = '<3.11' }
 setup = 'poetry install && pre-commit install'
 test = 'pytest --cov=devpi_ext --cov-branch --cov-report=term-missing --cov-fail-under=100 --doctest-modules'
 lint = 'pre-commit run --all-files'
-scm = 'python -c "import setuptools_scm; print(setuptools_scm.get_version())"'
 release = 'python release.py'
 
 [tool.black]
@@ -115,5 +122,5 @@ exclude = [
 ]
 
 [build-system]
-requires = ['poetry-core>=1.0']
-build-backend = 'poetry.core.masonry.api'
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning>=1.0.0,<2.0.0"]
+build-backend = "poetry_dynamic_versioning.backend"
