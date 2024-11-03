@@ -32,7 +32,7 @@ jobs:
         id: cache
         with:
           path: .venv
-          key: venv-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }}
+          key: v1-venv-code-quality-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }}
       - name: Install dependencies
         run: poetry install --extras=keyring --only=main,dev,lint
       - name: Run lint task
