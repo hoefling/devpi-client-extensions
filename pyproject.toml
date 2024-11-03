@@ -28,7 +28,7 @@ packages = [
 'devpi-client-ext-login-keyring' = 'devpi_ext.login:_keyring_plugin [keyring]'
 
 [tool.poetry.dependencies]
-python = '^3.7'
+python = '^3.8'
 devpi-client = '>=3.0.0'
 keyring = { version = '*', optional = true }
 importlib-metadata = { version = '^6.0.0', python = '<3.8' }
@@ -46,7 +46,7 @@ pre-commit = { version = '3.3.0', python = '>=3.8' }
 [tool.poetry.group.test.dependencies]
 pytest = '7.4.4'
 pytest-cov = '4.0.0'
-readme-renderer = '37.3'
+readme-renderer = '43.0'
 tomli = { version = '2.0.1', python = '<3.11' }
 
 [tool.taskipy.tasks]
