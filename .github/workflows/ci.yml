@@ -84,7 +84,7 @@ jobs:
       - name: Run test task
         run: poetry run task test --cov-report xml:coverage.xml --junitxml=unittests.xml
       - name: Upload coverage report to codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: coverage.xml
