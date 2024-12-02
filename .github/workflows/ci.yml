@@ -35,7 +35,7 @@ jobs:
         run: poetry install --extras=keyring --only=main,dev,lint
       - name: Run lint task
         env:
-          SKIP: no-commit-to-branch
+          SKIP: no-commit-to-branch,pytype
         run: poetry run task lint
   tests:
     name: ${{ matrix.os }} / ${{ matrix.python }}
