@@ -5,8 +5,8 @@ ci:
     -   pytype  # does not support py3.11 yet
 
 repos:
--   repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.269
+-   repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.8.1
     hooks:
     -   id: ruff
         args: [--fix, --exit-non-zero-on-fix]
@@ -20,7 +20,7 @@ repos:
         args: [--fix, --exit-non-zero-on-fix, --config=_typeshed/pyproject.toml]
 
 -   repo: https://github.com/psf/black
-    rev: 23.3.0
+    rev: 24.10.0
     hooks:
     -   id: black
         types: []
@@ -32,7 +32,7 @@ repos:
         files: ^_typeshed/.*.pyi?$
         args: [--config=_typeshed/pyproject.toml]
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v5.0.0
     hooks:
     -   id: no-commit-to-branch
     -   id: trailing-whitespace
@@ -47,7 +47,7 @@ repos:
     -   id: pretty-format-json
         args: [--autofix]
 -   repo: https://github.com/PyCQA/flake8
-    rev: 6.0.0
+    rev: 7.1.1
     hooks:
     -   id: flake8
         additional_dependencies:
@@ -58,24 +58,24 @@ repos:
         -   flake8-pyproject==1.2.2
 
 -   repo: https://github.com/PyCQA/isort
-    rev: 5.12.0
+    rev: 5.13.2
     hooks:
     -   id: isort
 
 -   repo: https://github.com/PyCQA/bandit
-    rev: 1.7.5
+    rev: 1.8.0
     hooks:
     -   id: bandit
         exclude: tests/
 -   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.3.0
+    rev: v1.13.0
     hooks:
     -   id: mypy
         exclude: tests/.*.py
         types: [python]
         additional_dependencies: [devpi-client,keyring]
 -   repo: https://github.com/hoefling/pre-commit-pytype
-    rev: 2023.4.27
+    rev: 2024.10.11
     hooks:
     -   id: pytype
         exclude: tests/.*.py
@@ -90,7 +90,7 @@ repos:
         types: [python]
         additional_dependencies: [devpi-client,keyring]
 -   repo: https://github.com/PyCQA/doc8
-    rev: v1.1.1
+    rev: v1.1.2
     hooks:
     -   id: doc8
 -   repo: https://github.com/pre-commit/pygrep-hooks
