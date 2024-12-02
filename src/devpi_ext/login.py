@@ -8,7 +8,6 @@ if the file is not present or not well-formed. In that case, the standard hook
 with entering password from command line will be used.
 """
 
-
 import configparser
 from pathlib import Path
 from typing import Iterable, Optional, Tuple
@@ -24,9 +23,9 @@ except ImportError:
         return None
 
 
-_key_repo = 'repository'
-_key_username = 'username'
-_key_password = 'password'  # nosec
+_key_repo = "repository"
+_key_username = "username"
+_key_password = "password"  # nosec
 _section_keys: Tuple[str, str, str] = (_key_repo, _key_username, _key_password)
 
 
@@ -36,7 +35,7 @@ class PypircPlugin:
     @devpi.main.hookimpl(tryfirst=True)
     def devpiclient_get_password(self, url: str, username: str) -> Optional[str]:
         """.. seealso:: :py:func:`devpi.hookspecs.devpiclient_get_password`."""
-        pypirc = Path.home() / '.pypirc'
+        pypirc = Path.home() / ".pypirc"
         try:
             with pypirc.open() as fp:
                 password = _find_password(fp, url, username)
@@ -44,7 +43,7 @@ class PypircPlugin:
             return None
 
         if password:
-            print('Using {} credentials from .pypirc'.format(username))
+            print("Using {} credentials from .pypirc".format(username))
         return password
 
 
@@ -73,7 +72,7 @@ class KeyringPlugin:
         """.. seealso:: :py:func:`devpi.hookspecs.devpiclient_get_password`."""
         password = get_password(url, username)
         if password:
-            print('Using {} credentials from keyring'.format(username))
+            print("Using {} credentials from keyring".format(username))
         return password
 
 
