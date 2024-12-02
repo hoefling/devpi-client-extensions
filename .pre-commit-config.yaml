@@ -18,19 +18,15 @@ repos:
         types: []
         files: ^_typeshed/.*.pyi?$
         args: [--fix, --exit-non-zero-on-fix, --config=_typeshed/pyproject.toml]
-
--   repo: https://github.com/psf/black
-    rev: 24.10.0
-    hooks:
-    -   id: black
+    -   id: ruff-format
         types: []
         files: ^.*.pyi?$
         exclude: ^_typeshed/
-    -   id: black
-        name: black (typeshed)
+    -   id: ruff
+        name: ruff-format (typeshed)
         types: []
         files: ^_typeshed/.*.pyi?$
-        args: [--config=_typeshed/pyproject.toml]
+
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
@@ -67,6 +63,7 @@ repos:
     hooks:
     -   id: bandit
         exclude: tests/
+
 -   repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.13.0
     hooks:
