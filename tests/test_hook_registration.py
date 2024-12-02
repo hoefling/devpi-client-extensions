@@ -11,15 +11,15 @@ except ModuleNotFoundError:
     import tomli as tomllib
 
 
-@pytest.fixture(scope='session', params=('_pypirc_plugin', '_keyring_plugin'))
+@pytest.fixture(scope="session", params=("_pypirc_plugin", "_keyring_plugin"))
 def plugin_name(request):
-    pyproj = pathlib.Path(__file__, '..', '..', 'pyproject.toml').resolve()
-    with pyproj.open(mode='rb') as fp:
+    pyproj = pathlib.Path(__file__, "..", "..", "pyproject.toml").resolve()
+    with pyproj.open(mode="rb") as fp:
         conf = tomllib.load(fp)
     return next(
         k
-        for k, v in conf['tool']['poetry']['plugins']['devpi_client'].items()
-        if v.startswith('{}:{}'.format(login.__name__, request.param))
+        for k, v in conf["tool"]["poetry"]["plugins"]["devpi_client"].items()
+        if v.startswith("{}:{}".format(login.__name__, request.param))
     )
 
 
@@ -35,17 +35,17 @@ def test_hookimpl_is_tryfirst(plugin_name):
     assert impl.tryfirst is True
 
 
-@pytest.mark.usefixtures('pypirc')
-@pytest.mark.parametrize('plugin', ('_pypirc_plugin', '_keyring_plugin'))
+@pytest.mark.usefixtures("pypirc")
+@pytest.mark.parametrize("plugin", ("_pypirc_plugin", "_keyring_plugin"))
 def test_devpi_ext_plugin_hook_called(monkeypatch, plugin):
-    monkeypatch.setattr(login, 'get_password', lambda service, user: 'fizz')
-    monkeypatch.delattr('devpi.login.devpiclient_get_password')
+    monkeypatch.setattr(login, "get_password", lambda service, user: "fizz")
+    monkeypatch.delattr("devpi.login.devpiclient_get_password")
     plugin_cls = login.__dict__[plugin].__class__
     monkeypatch.delattr(
-        '{}.{}.devpiclient_get_password'.format(
+        "{}.{}.devpiclient_get_password".format(
             plugin_cls.__module__, plugin_cls.__name__
         )
     )
     pm = get_pluginmanager()
-    pw = pm.hook.devpiclient_get_password(url='http://fizz', username='fizz')
-    assert pw == 'fizz'
+    pw = pm.hook.devpiclient_get_password(url="http://fizz", username="fizz")
+    assert pw == "fizz"

@@ -12,10 +12,10 @@ else:  # pragma: no cover
 
 def _read_version() -> str:
     try:
-        return importlib_metadata.version('devpi-client-extensions')
+        return importlib_metadata.version("devpi-client-extensions")
     except importlib_metadata.PackageNotFoundError:
-        return 'UNKNOWN'
+        return "UNKNOWN"
 
 
 __version__: str = _read_version()
-__all__ = ['__version__']
+__all__ = ["__version__"]

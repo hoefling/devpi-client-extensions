@@ -110,7 +110,7 @@ ignore = [
 [tool.doc8]
 max-line-length = 89
 
-[tool.ruff]
+[tool.ruff.lint]
 select = ["A", "B", "E", "ERA", "F", "G", "I", "N", "PTH", "W", "YTT"]
 ignore = [
     "E501",  # we let black handle long lines

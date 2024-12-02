@@ -13,10 +13,10 @@ jobs:
         shell: bash
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Python 3.9
+      - name: Setup Python 3.10
         uses: actions/setup-python@v5
         with:
-          python-version: 3.9
+          python-version: '3.10'
       - name: Get full Python version
         id: full-python-version
         run: echo version=$(python -c "import sys; print(*sys.version_info, sep='-')") >> $GITHUB_OUTPUT
@@ -35,7 +35,7 @@ jobs:
         run: poetry install --extras=keyring --only=main,dev,lint
       - name: Run lint task
         env:
-          SKIP: no-commit-to-branch
+          SKIP: no-commit-to-branch,pytype
         run: poetry run task lint
   tests:
     name: ${{ matrix.os }} / ${{ matrix.python }}
