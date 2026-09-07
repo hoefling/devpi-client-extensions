@@ -6,7 +6,7 @@ ci:
 
 repos:
 -   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.8.2
+    rev: v0.16.6
     hooks:
     -   id: ruff
         args: [--fix, --exit-non-zero-on-fix]
@@ -28,7 +28,7 @@ repos:
         files: ^_typeshed/.*.pyi?$
 
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
     -   id: no-commit-to-branch
     -   id: trailing-whitespace
@@ -43,7 +43,7 @@ repos:
     -   id: pretty-format-json
         args: [--autofix]
 -   repo: https://github.com/PyCQA/flake8
-    rev: 7.1.1
+    rev: 7.3.0
     hooks:
     -   id: flake8
         additional_dependencies:
@@ -54,18 +54,18 @@ repos:
         -   flake8-pyproject==1.2.2
 
 -   repo: https://github.com/PyCQA/isort
-    rev: 5.13.2
+    rev: 9.0.1
     hooks:
     -   id: isort
 
 -   repo: https://github.com/PyCQA/bandit
-    rev: 1.8.0
+    rev: 1.9.4
     hooks:
     -   id: bandit
         exclude: tests/
 
 -   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.13.0
+    rev: v2.3.1
     hooks:
     -   id: mypy
         exclude: tests/.*.py
@@ -87,7 +87,7 @@ repos:
         types: [python]
         additional_dependencies: [devpi-client,keyring]
 -   repo: https://github.com/PyCQA/doc8
-    rev: v1.1.2
+    rev: v2.0.0
     hooks:
     -   id: doc8
 -   repo: https://github.com/pre-commit/pygrep-hooks
